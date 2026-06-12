@@ -1,0 +1,3139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobkey University — Unlock Your Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #070B1A;
+    --navy2: #0D1530;
+    --navy3: #111B3A;
+    --gold: #F4A724;
+    --gold2: #FFD166;
+    --teal: #00D4FF;
+    --teal2: #0099BB;
+    --white: #FFFFFF;
+    --gray: #8892A4;
+    --glass: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.12);
+    --glow-gold: 0 0 40px rgba(244,167,36,0.4);
+    --glow-teal: 0 0 40px rgba(0,212,255,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ======================================================
+     INTRO ANIMATION OVERLAY
+     Sequence: door appears → key slides in → key unlocks →
+     door swings open 3D → university name revealed →
+     people/jobs scene → fade out to main site
+  ====================================================== */
+
+  /* Intro is now a permanent full-screen HERO SECTION (not an overlay).
+     It loops forever — never dismisses. Main site content is below it. */
+  #intro-overlay {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    background: #020408;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  /* Background stars */
+  .intro-stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .intro-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: starTwinkle 3s ease-in-out infinite;
+  }
+
+  @keyframes starTwinkle {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.5); }
+  }
+
+  /* Ground floor line */
+  .intro-floor {
+    position: absolute;
+    bottom: 18%;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(244,167,36,0.3), rgba(0,212,255,0.4), rgba(244,167,36,0.3), transparent);
+    animation: floorAppear 0.8s 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes floorAppear {
+    to { opacity: 1; }
+  }
+
+  /* ===== DOOR SCENE ===== */
+  .door-scene {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: sceneAppear 0.8s 0.3s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes sceneAppear {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  /* Door frame / wall */
+  .door-frame {
+    position: relative;
+    width: 220px;
+    height: 340px;
+  }
+
+  /* Frame border (wall cutout) */
+  .door-frame::before {
+    content: '';
+    position: absolute;
+    inset: -18px -22px;
+    background: linear-gradient(180deg, #1a0e04 0%, #2a1506 50%, #1a0e04 100%);
+    border-radius: 4px 4px 0 0;
+    border: 3px solid #3d2009;
+    z-index: 0;
+  }
+
+  /* Arch top of frame */
+  .door-frame::after {
+    content: '';
+    position: absolute;
+    top: -38px; left: -22px; right: -22px;
+    height: 40px;
+    background: linear-gradient(180deg, #2a1506, #1a0e04);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    border: 3px solid #3d2009;
+    border-bottom: none;
+    z-index: 0;
+  }
+
+  /* ===== THE DOOR ITSELF ===== */
+  .door-3d-wrapper {
+    position: absolute;
+    inset: 0;
+    perspective: 800px;
+    z-index: 2;
+  }
+
+  .door-panel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: left center;
+    transform: rotateY(0deg);
+    transform-style: preserve-3d;
+    transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+  }
+
+  .door-panel.door-open {
+    transform: rotateY(-82deg);
+  }
+
+  /* Door face (front) */
+  .door-face {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #8B4513 0%, #5C2D0A 40%, #3D1A04 100%);
+    border-radius: 0;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border: 2px solid #2a1000;
+  }
+
+  /* Wood grain lines */
+  .door-face::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(0,0,0,0.12) 18px,
+      rgba(0,0,0,0.12) 20px
+    );
+  }
+
+  /* Door panels (decorative insets) */
+  .door-inset {
+    position: absolute;
+    border: 3px solid rgba(0,0,0,0.4);
+    border-radius: 3px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(0,0,0,0.2));
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,0.1), inset -1px -1px 0 rgba(0,0,0,0.3);
+  }
+
+  .door-inset-top {
+    top: 20px; left: 14px; right: 14px;
+    height: 100px;
+  }
+
+  .door-inset-mid {
+    top: 136px; left: 14px; right: 14px;
+    height: 80px;
+  }
+
+  .door-inset-bot {
+    top: 232px; left: 14px; right: 14px;
+    height: 90px;
+  }
+
+  /* Keyhole plate */
+  .keyhole-plate {
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 46px;
+    background: linear-gradient(180deg, #c8a020, #8a6a10, #c8a020);
+    border-radius: 4px;
+    border: 1px solid #5a4008;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .keyhole-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #050810;
+    border: 1px solid #2a1800;
+  }
+
+  .keyhole-slot {
+    width: 5px;
+    height: 10px;
+    background: #050810;
+    border-radius: 0 0 2px 2px;
+  }
+
+  /* Door knob */
+  .door-knob {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(28px);
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle at 30% 30%, #e8c840, #b8980a, #705e06);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+
+  /* Hinges */
+  .door-hinge {
+    position: absolute;
+    left: 4px;
+    width: 14px;
+    height: 30px;
+    background: linear-gradient(90deg, #888, #ccc, #888);
+    border-radius: 3px;
+    border: 1px solid #555;
+  }
+
+  .door-hinge-top { top: 30px; }
+  .door-hinge-bot { bottom: 30px; }
+
+  /* Light glow behind door (visible when open) */
+  .door-light {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%,
+      rgba(255,230,100,0.95) 0%,
+      rgba(244,167,36,0.8) 30%,
+      rgba(255,200,50,0.5) 60%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+
+  /* Light rays streaming out */
+  .light-rays {
+    position: absolute;
+    inset: -60px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    z-index: 0;
+  }
+
+  .light-ray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 3px;
+    transform-origin: left center;
+    background: linear-gradient(90deg, rgba(255,230,100,0.6), transparent);
+    border-radius: 2px;
+  }
+
+  /* ===== KEY ===== */
+  .key-wrapper {
+    position: absolute;
+    left: -340px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .key-wrapper.key-slide-in {
+    animation: keySlideIn 1.2s 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes keySlideIn {
+    0% { left: -340px; opacity: 0.3; }
+    80% { left: 155px; opacity: 1; }
+    100% { left: 150px; opacity: 1; }
+  }
+
+  .key-wrapper.key-turn {
+    animation: keySlideIn 1.2s 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+               keyTurn 0.7s 3.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes keyTurn {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    40% { transform: translateY(-52%) rotate(80deg); }
+    70% { transform: translateY(-50%) rotate(88deg); }
+    100% { transform: translateY(-50%) rotate(90deg); }
+  }
+
+  /* SVG Key */
+  .key-svg {
+    width: 90px;
+    height: 36px;
+    filter: drop-shadow(0 0 8px rgba(244,167,36,0.7));
+  }
+
+  /* Unlock particle burst */
+  .unlock-burst {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 15;
+  }
+
+  .unlock-burst.active {
+    animation: burstAppear 0.8s ease forwards;
+  }
+
+  @keyframes burstAppear {
+    0% { opacity: 0; transform: translateY(-50%) scale(0.5); }
+    40% { opacity: 1; transform: translateY(-50%) scale(1.3); }
+    100% { opacity: 0; transform: translateY(-50%) scale(1.8); }
+  }
+
+  /* Spark particles */
+  .burst-spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #F4A724;
+    animation: sparkFly 0.8s ease-out forwards;
+  }
+
+  @keyframes sparkFly {
+    from { transform: translate(0,0) scale(1); opacity: 1; }
+    to { transform: var(--sparkDest) scale(0); opacity: 0; }
+  }
+
+  /* ===== REVEAL TEXT ===== */
+  .intro-reveal {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .intro-reveal.show {
+    animation: revealFadeIn 0.8s ease forwards;
+  }
+
+  @keyframes revealFadeIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .intro-univ-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-align: center;
+    background: linear-gradient(135deg, #FFD166 0%, #F4A724 40%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(244,167,36,0.8));
+    animation: nameGlow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes nameGlow {
+    from { filter: drop-shadow(0 0 20px rgba(244,167,36,0.6)); }
+    to { filter: drop-shadow(0 0 50px rgba(0,212,255,0.8)); }
+  }
+
+  .intro-tagline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    animation: taglineFade 1s 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes taglineFade {
+    to { opacity: 1; }
+  }
+
+  /* Key icon in title */
+  .intro-key-icon {
+    font-size: 2rem;
+    display: inline-block;
+    animation: iconSpin 1s 0.3s ease forwards;
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+  }
+
+  @keyframes iconSpin {
+    to { opacity: 1; transform: rotate(0deg) scale(1); }
+  }
+
+  /* ===== PEOPLE / JOBS SCENE ===== */
+  .people-scene {
+    position: absolute;
+    bottom: 18%;
+    left: 0; right: 0;
+    height: 120px;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .people-scene.show {
+    animation: peopleReveal 0.6s ease forwards;
+  }
+
+  @keyframes peopleReveal {
+    to { opacity: 1; }
+  }
+
+  .person {
+    position: absolute;
+    bottom: 0;
+    font-size: 2.2rem;
+    animation: personWalk var(--walk-dur, 4s) var(--walk-delay, 0s) linear infinite;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  }
+
+  @keyframes personWalk {
+    0% { left: -80px; opacity: 0; transform: scale(0.8); }
+    5% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: calc(100% + 80px); opacity: 0; transform: scale(1); }
+  }
+
+  .job-badge {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(244,167,36,0.9), rgba(255,209,102,0.9));
+    color: #050810;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    animation: badgeFloat var(--badge-dur, 5s) var(--badge-delay, 0.5s) ease-in-out infinite;
+    box-shadow: 0 4px 15px rgba(244,167,36,0.5);
+  }
+
+  @keyframes badgeFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); opacity: 0.7; }
+    50% { transform: translateY(-20px) rotate(2deg); opacity: 1; }
+  }
+
+  /* Enter button */
+  .intro-enter-btn {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    padding: 16px 50px;
+    background: linear-gradient(135deg, #F4A724, #FFD166);
+    color: #050810;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 8px 30px rgba(244,167,36,0.5), 0 0 0 0 rgba(244,167,36,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .intro-enter-btn.show {
+    animation: enterBtnShow 0.8s ease forwards, btnPulse 2s 1s ease-in-out infinite;
+    pointer-events: all;
+  }
+
+  @keyframes enterBtnShow {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  @keyframes btnPulse {
+    0%, 100% { box-shadow: 0 8px 30px rgba(244,167,36,0.5), 0 0 0 0 rgba(244,167,36,0.4); }
+    50% { box-shadow: 0 8px 30px rgba(244,167,36,0.6), 0 0 0 16px rgba(244,167,36,0); }
+  }
+
+  .intro-enter-btn:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 12px 40px rgba(244,167,36,0.7);
+  }
+
+  /* Skip button */
+  .intro-skip {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    z-index: 40;
+    color: rgba(255,255,255,0.35);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.04);
+    transition: all 0.2s;
+    animation: skipAppear 1s 1s ease forwards;
+    opacity: 0;
+  }
+
+  .intro-skip:hover {
+    color: rgba(255,255,255,0.8);
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.08);
+  }
+
+  @keyframes skipAppear {
+    to { opacity: 1; }
+  }
+
+  /* Progress bar at bottom */
+  .intro-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #F4A724, #00D4FF);
+    border-radius: 0 2px 2px 0;
+    width: 0%;
+    z-index: 50;
+    transition: width linear;
+  }
+
+  @keyframes scrollLineAnim {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+  @keyframes scrollArrowAnim {
+    0%, 100% { opacity: 0.3; transform: rotate(45deg) translateY(-4px); }
+    50% { opacity: 1; transform: rotate(45deg) translateY(2px); }
+  }
+
+  /* Lock click/shake effect */
+  @keyframes doorShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-3px) rotateZ(-0.5deg); }
+    40% { transform: translateX(3px) rotateZ(0.5deg); }
+    60% { transform: translateX(-2px); }
+    80% { transform: translateX(2px); }
+  }
+
+  /* ===== CANVAS PARTICLES ===== */
+  #particles-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 5%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(7,11,26,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s;
+  }
+
+  nav.scrolled {
+    background: rgba(7,11,26,0.95);
+    height: 68px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+
+  .nav-brand {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-brand-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+
+  .nav-brand-name span { color: var(--gold); }
+
+  .nav-brand-sub {
+    font-size: 0.6rem;
+    color: var(--gray);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+    background: var(--glass);
+  }
+
+  .nav-links .dropdown { position: relative; }
+
+  .nav-links .dropdown > a::after {
+    content: ' ▾';
+    font-size: 0.7rem;
+    opacity: 0.6;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    min-width: 220px;
+    background: rgba(13,21,48,0.97);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 8px;
+    z-index: 9999;
+  }
+
+  .dropdown:hover .dropdown-menu { display: block; }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 9px 14px;
+    font-size: 0.82rem;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  .dropdown-menu a:hover {
+    background: rgba(244,167,36,0.12);
+    color: var(--gold);
+  }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), #E8920A) !important;
+    color: var(--navy) !important;
+    font-weight: 700 !important;
+    padding: 10px 22px !important;
+    border-radius: 50px !important;
+    box-shadow: 0 4px 20px rgba(244,167,36,0.4);
+    transition: all 0.3s !important;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(244,167,36,0.6) !important;
+    background: linear-gradient(135deg, #FFD166, var(--gold)) !important;
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 80px 5% 0;
+  }
+
+  .hero-bg-orbs {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(244,167,36,0.15), transparent 70%);
+    top: -100px; right: 10%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 70%);
+    bottom: 0; left: 5%;
+    animation-delay: 3s;
+  }
+
+  .orb-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(100,50,255,0.1), transparent 70%);
+    top: 30%; left: 40%;
+    animation-delay: 5s;
+  }
+
+  @keyframes orbFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    max-width: 600px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(244,167,36,0.12);
+    border: 1px solid rgba(244,167,36,0.3);
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease 0.2s both;
+  }
+
+  .hero-title .line1 { display: block; color: var(--white); }
+  .hero-title .line2 {
+    display: block;
+    background: linear-gradient(135deg, var(--gold), var(--teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-title .line3 { display: block; color: var(--white); }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+    animation: fadeInUp 0.8s ease 0.4s both;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease 0.6s both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--gold), #E8920A);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(244,167,36,0.4);
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(244,167,36,0.6);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--glass);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-3px);
+    border-color: rgba(0,212,255,0.4);
+    box-shadow: 0 8px 30px rgba(0,212,255,0.2);
+  }
+
+  .hero-3d-scene {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    perspective: 1000px;
+    animation: fadeInRight 1s ease 0.3s both;
+  }
+
+  /* 3D KEY COMPONENT */
+  .key-3d-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    animation: keyRotate 12s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes keyRotate {
+    0%, 100% { transform: rotateY(-15deg) rotateX(5deg); }
+    25% { transform: rotateY(15deg) rotateX(-5deg); }
+    50% { transform: rotateY(20deg) rotateX(8deg); }
+    75% { transform: rotateY(-10deg) rotateX(-3deg); }
+  }
+
+  .key-svg-container {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 30px rgba(244,167,36,0.6)) drop-shadow(0 0 60px rgba(244,167,36,0.3));
+  }
+
+  /* Floating particles around key */
+  .key-particles {
+    position: absolute;
+    inset: -60px;
+    pointer-events: none;
+  }
+
+  .kp {
+    position: absolute;
+    border-radius: 50%;
+    animation: kpFloat linear infinite;
+  }
+
+  @keyframes kpFloat {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-200px) rotate(360deg); opacity: 0; }
+  }
+
+  /* Floating info cards */
+  .hero-float-cards {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .float-card {
+    position: absolute;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 14px 18px;
+    pointer-events: all;
+    animation: floatCard 4s ease-in-out infinite;
+  }
+
+  .float-card:nth-child(1) { top: 5%; right: 0; animation-delay: 0s; }
+  .float-card:nth-child(2) { bottom: 15%; right: 5%; animation-delay: 1.5s; }
+  .float-card:nth-child(3) { top: 35%; left: 0; animation-delay: 0.8s; }
+
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .fc-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .fc-label {
+    font-size: 0.72rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ===== SCROLL INDICATOR ===== */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .scroll-indicator span {
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== STATS BAR ===== */
+  #stats {
+    position: relative;
+    z-index: 2;
+    padding: 60px 5%;
+    background: linear-gradient(90deg, rgba(244,167,36,0.05), rgba(0,212,255,0.05));
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    padding: 20px 30px;
+    text-align: center;
+    border-right: 1px solid var(--glass-border);
+    transition: all 0.3s;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-item:hover { background: var(--glass); border-radius: 16px; }
+
+  .stat-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--gray);
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  .stat-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* ===== SECTION COMMONS ===== */
+  section {
+    position: relative;
+    z-index: 2;
+    padding: 100px 5%;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.25);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-title span {
+    background: linear-gradient(135deg, var(--gold), var(--teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--gray);
+    line-height: 1.7;
+    max-width: 550px;
+  }
+
+  /* ===== ABOUT SECTION ===== */
+  #about {
+    background: linear-gradient(135deg, var(--navy2) 0%, var(--navy) 100%);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-visual {
+    position: relative;
+    perspective: 800px;
+  }
+
+  .about-3d-card {
+    background: linear-gradient(135deg, var(--navy3), var(--navy2));
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    transform: rotateY(-5deg) rotateX(3deg);
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.5), -5px -5px 20px rgba(244,167,36,0.05);
+    transition: transform 0.5s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-3d-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--teal));
+  }
+
+  .about-3d-card:hover {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .value-chip {
+    background: rgba(244,167,36,0.08);
+    border: 1px solid rgba(244,167,36,0.2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+  }
+
+  .value-chip:hover {
+    background: rgba(244,167,36,0.15);
+    border-color: rgba(244,167,36,0.4);
+    transform: translateY(-2px);
+  }
+
+  .value-chip-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .about-text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .about-philosophy {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 24px;
+    border-left: 3px solid var(--teal);
+  }
+
+  .about-philosophy p {
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* ===== FACULTIES ===== */
+  #faculties {
+    background: var(--navy);
+  }
+
+  .faculties-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .faculties-header .section-subtitle {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .faculties-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* 3D FLIP CARD */
+  .faculty-card {
+    height: 340px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .fc-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faculty-card:hover .fc-inner {
+    transform: rotateY(180deg);
+  }
+
+  .fc-front, .fc-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .fc-front {
+    background: linear-gradient(135deg, var(--navy3), var(--navy2));
+    border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 28px;
+    text-align: center;
+    position: relative;
+  }
+
+  .fc-front::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--faculty-color, var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .faculty-card:hover .fc-front::before {
+    transform: scaleX(0); /* hidden on flip */
+  }
+
+  .fc-front-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--faculty-color, rgba(244,167,36,0.1)), transparent 70%);
+    pointer-events: none;
+  }
+
+  .fc-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 10px var(--faculty-color, var(--gold)));
+  }
+
+  .fc-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .fc-sub {
+    font-size: 0.78rem;
+    color: var(--gray);
+    position: relative;
+    z-index: 1;
+  }
+
+  .fc-back {
+    background: linear-gradient(135deg, var(--faculty-back, #1a2040), var(--navy3));
+    border: 1px solid var(--faculty-color, rgba(244,167,36,0.3));
+    transform: rotateY(180deg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .fc-back-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .fc-programs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fc-programs li {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fc-programs li::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--faculty-color, var(--gold));
+    flex-shrink: 0;
+  }
+
+  .fc-apply {
+    margin-top: 20px;
+    display: inline-block;
+    background: var(--faculty-color, var(--gold));
+    color: var(--navy);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity 0.2s;
+  }
+
+  .fc-apply:hover { opacity: 0.85; }
+
+  /* ===== UNLOCK SECTION ===== */
+  #unlock {
+    background: linear-gradient(135deg, var(--navy2), var(--navy3));
+    overflow: hidden;
+  }
+
+  .unlock-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .unlock-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .unlock-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .unlock-step::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--step-color, var(--gold));
+    transform: scaleY(0);
+    transition: transform 0.4s;
+  }
+
+  .unlock-step:hover::before { transform: scaleY(1); }
+
+  .unlock-step:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateX(6px);
+  }
+
+  .step-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    background: var(--step-color, var(--gold));
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .step-content h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .step-content p {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .unlock-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .unlock-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 28px 22px;
+    text-align: center;
+    transition: all 0.4s;
+    cursor: default;
+  }
+
+  .unlock-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-8px) rotateZ(-1deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .unlock-card.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(244,167,36,0.12), rgba(0,212,255,0.08));
+    border-color: rgba(244,167,36,0.3);
+  }
+
+  .uc-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+  .uc-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .uc-text { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
+
+  /* ===== SCHOLARSHIPS ===== */
+  #scholarships {
+    background: var(--navy);
+  }
+
+  .scholarships-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .scholarships-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .schol-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .schol-card {
+    background: linear-gradient(135deg, var(--navy3), var(--navy2));
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+
+  .schol-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, var(--schol-color, rgba(244,167,36,0.15)), transparent 70%);
+    pointer-events: none;
+  }
+
+  .schol-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--schol-color, rgba(244,167,36,0.4));
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px var(--schol-glow, rgba(244,167,36,0.1));
+  }
+
+  .schol-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    background: rgba(var(--schol-rgb, 244,167,36), 0.15);
+    color: var(--schol-color, var(--gold));
+    border: 1px solid rgba(var(--schol-rgb, 244,167,36), 0.3);
+  }
+
+  .schol-icon { font-size: 2.8rem; margin-bottom: 16px; display: block; }
+
+  .schol-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .schol-text {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .schol-link {
+    color: var(--schol-color, var(--gold));
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+
+  .schol-link:hover { gap: 12px; }
+
+  /* ===== CTA SECTION ===== */
+  #cta {
+    padding: 80px 5%;
+    background: linear-gradient(135deg, var(--navy2), var(--navy3));
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  #cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(244,167,36,0.05), rgba(0,212,255,0.05));
+  }
+
+  .cta-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-inner h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .cta-inner h2 span {
+    background: linear-gradient(135deg, var(--gold), var(--teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cta-inner p {
+    color: var(--gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .intake-info {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .intake-item {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    text-align: left;
+  }
+
+  .intake-item-title {
+    font-size: 0.7rem;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .intake-item-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .intake-item-deadline {
+    font-size: 0.78rem;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  /* ===== CONTACT STRIP ===== */
+  #contact-strip {
+    padding: 30px 5%;
+    background: rgba(0,212,255,0.05);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 2;
+    position: relative;
+  }
+
+  .contact-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ci-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(244,167,36,0.12);
+    border: 1px solid rgba(244,167,36,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .ci-label { font-size: 0.72rem; color: var(--gray); margin-bottom: 2px; }
+  .ci-value { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    position: relative;
+    z-index: 2;
+    background: var(--navy2);
+    padding: 70px 5% 30px;
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto 50px;
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    max-width: 280px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .social-link {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    color: var(--gray);
+  }
+
+  .social-link:hover {
+    background: rgba(244,167,36,0.15);
+    border-color: rgba(244,167,36,0.4);
+    color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .footer-col h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--white);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col ul a {
+    font-size: 0.83rem;
+    color: var(--gray);
+    text-decoration: none;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .footer-col ul a::before {
+    content: '›';
+    color: var(--gold);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .footer-col ul a:hover {
+    color: var(--white);
+    padding-left: 6px;
+  }
+
+  .footer-col ul a:hover::before { opacity: 1; }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+
+  .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+  .footer-bottom-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-bottom-links a {
+    font-size: 0.8rem;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-bottom-links a:hover { color: var(--white); }
+
+  /* ===== REVEAL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+  .delay-5 { transition-delay: 0.5s; }
+
+  /* ===== GRID LINES BG ===== */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- ======================================================
+     INTRO ANIMATION OVERLAY
+     Phase 1: Door scene appears
+     Phase 2: Key slides in, inserts into keyhole
+     Phase 3: Key turns, door unlocks
+     Phase 4: Door swings open in 3D
+     Phase 5: University name revealed from light
+     Phase 6: People walking out, finding jobs
+     Phase 7: Enter button → fade to main site
+====================================================== -->
+<div id="intro-overlay">
+
+  <!-- Loop badge -->
+  <div style="position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:40;color:rgba(255,255,255,0.25);font-family:'Orbitron',sans-serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;">JOBKEY UNIVERSITY</div>
+
+  <!-- Background stars -->
+  <div class="intro-stars" id="intro-stars"></div>
+
+  <!-- Floor line -->
+  <div class="intro-floor"></div>
+
+  <!-- Door scene -->
+  <div class="door-scene" id="door-scene">
+
+    <!-- Light rays (visible when door opens) -->
+    <div class="light-rays" id="light-rays">
+      <svg width="100%" height="100%" viewBox="0 0 500 500" style="position:absolute;inset:0">
+        <defs>
+          <radialGradient id="lightGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFE566" stop-opacity="0.7"/>
+            <stop offset="40%" stop-color="#F4A724" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#F4A724" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="250" cy="250" rx="240" ry="240" fill="url(#lightGrad)"/>
+        <!-- Rays -->
+        <line x1="250" y1="250" x2="10" y2="10" stroke="#FFE566" stroke-width="2" stroke-opacity="0.3"/>
+        <line x1="250" y1="250" x2="490" y2="10" stroke="#FFE566" stroke-width="2" stroke-opacity="0.25"/>
+        <line x1="250" y1="250" x2="490" y2="490" stroke="#FFE566" stroke-width="1.5" stroke-opacity="0.2"/>
+        <line x1="250" y1="250" x2="10" y2="490" stroke="#FFE566" stroke-width="1.5" stroke-opacity="0.2"/>
+        <line x1="250" y1="250" x2="250" y2="10" stroke="#FFE566" stroke-width="3" stroke-opacity="0.35"/>
+        <line x1="250" y1="250" x2="10" y2="250" stroke="#FFE566" stroke-width="2" stroke-opacity="0.2"/>
+        <line x1="250" y1="250" x2="490" y2="250" stroke="#FFE566" stroke-width="2" stroke-opacity="0.2"/>
+        <line x1="250" y1="250" x2="150" y2="10" stroke="#FFE566" stroke-width="2" stroke-opacity="0.25"/>
+        <line x1="250" y1="250" x2="350" y2="10" stroke="#FFE566" stroke-width="2" stroke-opacity="0.25"/>
+      </svg>
+    </div>
+
+    <!-- Door frame + door -->
+    <div class="door-frame" id="door-frame">
+      <div class="door-light" id="door-light"></div>
+
+      <div class="door-3d-wrapper">
+        <div class="door-panel" id="door-panel">
+          <!-- Door face (front) -->
+          <div class="door-face">
+            <!-- Decorative inset panels -->
+            <div class="door-inset door-inset-top"></div>
+            <div class="door-inset door-inset-mid"></div>
+            <div class="door-inset door-inset-bot"></div>
+            <!-- Hinges -->
+            <div class="door-hinge door-hinge-top"></div>
+            <div class="door-hinge door-hinge-bot"></div>
+            <!-- Keyhole -->
+            <div class="keyhole-plate" id="keyhole-plate">
+              <div class="keyhole-circle"></div>
+              <div class="keyhole-slot"></div>
+            </div>
+            <!-- Knob -->
+            <div class="door-knob"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key (positioned relative to door frame) -->
+      <div class="key-wrapper" id="key-wrapper">
+        <!-- SVG Key graphic -->
+        <svg class="key-svg" viewBox="0 0 120 44" xmlns="http://www.w3.org/2000/svg">
+          <!-- Key bow (ring/head) -->
+          <circle cx="22" cy="22" r="18" fill="none" stroke="#F4A724" stroke-width="5"/>
+          <circle cx="22" cy="22" r="10" fill="none" stroke="#F4A724" stroke-width="3"/>
+          <!-- J letter inside bow -->
+          <text x="16" y="27" font-family="Orbitron,sans-serif" font-size="13" font-weight="900" fill="#F4A724">J</text>
+          <!-- Key shaft -->
+          <rect x="38" y="19" width="72" height="6" rx="3" fill="#F4A724"/>
+          <!-- Key teeth -->
+          <rect x="58" y="25" width="6" height="10" rx="2" fill="#FFD166"/>
+          <rect x="72" y="25" width="6" height="14" rx="2" fill="#FFD166"/>
+          <rect x="86" y="25" width="6" height="8" rx="2" fill="#FFD166"/>
+          <rect x="100" y="25" width="6" height="12" rx="2" fill="#FFD166"/>
+          <!-- Teal accent -->
+          <circle cx="22" cy="22" r="5" fill="#00D4FF" opacity="0.7"/>
+        </svg>
+      </div>
+
+      <!-- Unlock burst effect -->
+      <div class="unlock-burst" id="unlock-burst">
+        <svg width="60" height="60" viewBox="0 0 60 60">
+          <circle cx="30" cy="30" r="20" fill="none" stroke="#F4A724" stroke-width="2" opacity="0.8"/>
+          <circle cx="30" cy="30" r="10" fill="rgba(244,167,36,0.4)"/>
+          <text x="22" y="35" font-size="14" fill="#F4A724">✓</text>
+        </svg>
+      </div>
+
+    </div><!-- /door-frame -->
+  </div><!-- /door-scene -->
+
+  <!-- University name reveal (appears through the light) -->
+  <div class="intro-reveal" id="intro-reveal">
+    <div style="text-align:center; z-index:25; position:relative;">
+      <div style="margin-bottom:12px;">
+        <span class="intro-key-icon">🔑</span>
+      </div>
+      <div class="intro-univ-name">JOBKEY<br>University</div>
+      <div class="intro-tagline">Unlock Your Future · The Key is in Your Hands</div>
+    </div>
+  </div>
+
+  <!-- People / Jobs walking scene -->
+  <div class="people-scene" id="people-scene">
+    <!-- Walking people (different jobs) -->
+    <div class="person" style="--walk-dur:6s;--walk-delay:0s;bottom:2px">🎓</div>
+    <div class="person" style="--walk-dur:7s;--walk-delay:0.8s;bottom:0px">👨‍💼</div>
+    <div class="person" style="--walk-dur:5.5s;--walk-delay:1.6s;bottom:0px">👩‍💻</div>
+    <div class="person" style="--walk-dur:8s;--walk-delay:0.3s;bottom:0px">👩‍⚕️</div>
+    <div class="person" style="--walk-dur:6.5s;--walk-delay:2s;bottom:0px">👨‍🔬</div>
+    <div class="person" style="--walk-dur:7.5s;--walk-delay:1.2s;bottom:0px">👩‍🎓</div>
+    <div class="person" style="--walk-dur:5s;--walk-delay:2.5s;bottom:0px">👨‍⚕️</div>
+    <!-- Job badges floating up -->
+    <div class="job-badge" style="--badge-dur:4s;--badge-delay:0.5s;left:10%">Software Engineer</div>
+    <div class="job-badge" style="--badge-dur:5s;--badge-delay:1.5s;left:28%">Doctor</div>
+    <div class="job-badge" style="--badge-dur:4.5s;--badge-delay:0.8s;left:48%">Business Analyst</div>
+    <div class="job-badge" style="--badge-dur:6s;--badge-delay:2s;left:68%">Researcher</div>
+    <div class="job-badge" style="--badge-dur:5.5s;--badge-delay:1.2s;left:82%">Engineer</div>
+  </div>
+
+  <!-- Scroll-down indicator -->
+  <div id="scroll-down-hint" style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:40;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transition:opacity 0.8s;pointer-events:none;">
+    <span style="color:rgba(255,255,255,0.4);font-family:'Space Grotesk',sans-serif;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;">Explore</span>
+    <div style="width:1px;height:32px;background:linear-gradient(180deg,rgba(244,167,36,0.6),transparent);animation:scrollLineAnim 1.5s ease-in-out infinite;"></div>
+    <div style="width:8px;height:8px;border-right:2px solid rgba(244,167,36,0.6);border-bottom:2px solid rgba(244,167,36,0.6);transform:rotate(45deg);animation:scrollArrowAnim 1.5s ease-in-out infinite;"></div>
+  </div>
+
+</div><!-- /intro-overlay -->
+
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Key bow (circle) with J inside -->
+      <circle cx="18" cy="18" r="13" stroke="#F4A724" stroke-width="3" fill="none"/>
+      <circle cx="18" cy="18" r="7" stroke="#F4A724" stroke-width="2" fill="rgba(244,167,36,0.1)"/>
+      <!-- J letter -->
+      <text x="15" y="23" font-family="Orbitron,sans-serif" font-size="10" font-weight="900" fill="#F4A724">J</text>
+      <!-- Key shaft -->
+      <line x1="28" y1="18" x2="46" y2="18" stroke="#F4A724" stroke-width="3" stroke-linecap="round"/>
+      <!-- Key teeth -->
+      <line x1="40" y1="18" x2="40" y2="24" stroke="#F4A724" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="34" y1="18" x2="34" y2="22" stroke="#F4A724" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="44" y1="18" x2="44" y2="21" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
+      <!-- Glow effect -->
+      <circle cx="18" cy="18" r="13" stroke="rgba(244,167,36,0.2)" stroke-width="6" fill="none"/>
+    </svg>
+    <div class="nav-brand">
+      <div class="nav-brand-name">JOB<span>KEY</span></div>
+      <div class="nav-brand-sub">University · Somalia</div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li class="dropdown">
+      <a href="#about">The University</a>
+      <div class="dropdown-menu">
+        <a href="#about">About Jobkey</a>
+        <a href="#">History</a>
+        <a href="#">Strategy</a>
+        <a href="#">Governance</a>
+        <a href="#">Rector's Message</a>
+        <a href="#">Development</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <a href="#faculties">Academics</a>
+      <div class="dropdown-menu">
+        <a href="#faculties">All Faculties</a>
+        <a href="#">Agriculture & Veterinary</a>
+        <a href="#">Economic & Management</a>
+        <a href="#">Medicine & Health</a>
+        <a href="#">Computer Science</a>
+        <a href="#">Sharia & Law</a>
+        <a href="#">Postgraduate Diploma</a>
+        <a href="#">Distance Learning</a>
+        <a href="#">Teaching Hospital</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <a href="#cta">Admissions</a>
+      <div class="dropdown-menu">
+        <a href="#cta">Apply Now</a>
+        <a href="#">Campuses</a>
+        <a href="#scholarships">Scholarships</a>
+        <a href="#">Sports Center</a>
+        <a href="#">Alumni</a>
+        <a href="#">Events</a>
+      </div>
+    </li>
+    <li><a href="https://candidate.speedexam.net/signin.aspx?site=jobkeyuniver7" target="_blank">EXAM</a></li>
+    <li><a href="http://jobkeyportal.com" target="_blank" class="nav-cta">Student Portal →</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-bg"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">🔑 Established 2011 · Somalia's Leading University</div>
+    <h1 class="hero-title">
+      <span class="line1">Unlock Your</span>
+      <span class="line2">Future Today</span>
+      <span class="line3">With Jobkey</span>
+    </h1>
+    <p class="hero-subtitle">
+      Somalia's premier non-profit university — opening doors to excellence in education, research, and innovation aligned with the UN SDG 4 vision for quality education for all.
+    </p>
+    <div class="hero-buttons">
+      <a href="#cta" class="btn-primary">🔑 Apply Now — Free</a>
+      <a href="#faculties" class="btn-secondary">Explore Faculties →</a>
+    </div>
+  </div>
+
+  <div class="hero-3d-scene">
+    <div class="key-3d-wrapper">
+      <svg class="key-svg-container" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="keyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F4A724"/>
+            <stop offset="50%" stop-color="#FFD166"/>
+            <stop offset="100%" stop-color="#F4A724"/>
+          </linearGradient>
+          <linearGradient id="shaftGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#F4A724"/>
+            <stop offset="100%" stop-color="#00D4FF"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow2">
+            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="bowGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(244,167,36,0.3)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Glow outer ring -->
+        <circle cx="110" cy="140" r="88" fill="url(#bowGlow)" opacity="0.6">
+          <animate attributeName="r" values="88;96;88" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.6;0.3;0.6" dur="3s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Key Bow (ring) - outer -->
+        <circle cx="110" cy="140" r="72" stroke="url(#keyGrad)" stroke-width="5" fill="none" filter="url(#glow)"/>
+        <!-- Key Bow - inner hole -->
+        <circle cx="110" cy="140" r="40" stroke="url(#keyGrad)" stroke-width="3.5" fill="rgba(7,11,26,0.8)" filter="url(#glow)"/>
+
+        <!-- J letter in bow -->
+        <text x="95" y="155" font-family="Orbitron,sans-serif" font-size="34" font-weight="900" fill="url(#keyGrad)" filter="url(#glow)">J</text>
+
+        <!-- Connecting shaft to blade -->
+        <line x1="182" y1="140" x2="290" y2="140" stroke="url(#shaftGrad)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+
+        <!-- Key teeth (bottom) -->
+        <rect x="250" y="140" width="10" height="26" rx="3" fill="#F4A724" filter="url(#glow)"/>
+        <rect x="228" y="140" width="10" height="20" rx="3" fill="#F4A724" filter="url(#glow)"/>
+        <rect x="270" y="140" width="8" height="16" rx="2.5" fill="#00D4FF" filter="url(#glow)"/>
+
+        <!-- Orbital ring decoration -->
+        <ellipse cx="110" cy="140" rx="100" ry="30" stroke="rgba(0,212,255,0.2)" stroke-width="1" fill="none" stroke-dasharray="8 6">
+          <animateTransform attributeName="transform" type="rotate" from="0 110 140" to="360 110 140" dur="12s" repeatCount="indefinite"/>
+        </ellipse>
+
+        <!-- Floating dots -->
+        <circle cx="60" cy="80" r="3" fill="#F4A724" opacity="0.6">
+          <animate attributeName="cy" values="80;65;80" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="170" cy="90" r="4" fill="#00D4FF" opacity="0.5">
+          <animate attributeName="cy" values="90;70;90" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="50" cy="190" r="2.5" fill="#FFD166" opacity="0.7">
+          <animate attributeName="cy" values="190;205;190" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="280" cy="110" r="3" fill="#F4A724" opacity="0.5">
+          <animate attributeName="cy" values="110;95;110" dur="4.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="240" cy="180" r="2" fill="#00D4FF" opacity="0.6">
+          <animate attributeName="cy" values="180;165;180" dur="3s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Sparkle stars -->
+        <text x="30" y="120" font-size="16" fill="#F4A724" opacity="0.7">✦</text>
+        <text x="175" y="200" font-size="12" fill="#00D4FF" opacity="0.5">✦</text>
+        <text x="260" y="75" font-size="10" fill="#FFD166" opacity="0.6">✦</text>
+      </svg>
+    </div>
+
+    <!-- Floating info cards -->
+    <div class="hero-float-cards">
+      <div class="float-card">
+        <div class="fc-number">5000+</div>
+        <div class="fc-label">Active Students</div>
+      </div>
+      <div class="float-card">
+        <div class="fc-number">25+</div>
+        <div class="fc-label">Programs</div>
+      </div>
+      <div class="float-card">
+        <div class="fc-number">2011</div>
+        <div class="fc-label">Est. Year</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal delay-1">
+      <span class="stat-icon">🎓</span>
+      <div class="stat-number" data-target="5000">0</div>
+      <div class="stat-label">Students Enrolled</div>
+    </div>
+    <div class="stat-item reveal delay-2">
+      <span class="stat-icon">📚</span>
+      <div class="stat-number" data-target="25">0</div>
+      <div class="stat-label">Academic Programs</div>
+    </div>
+    <div class="stat-item reveal delay-3">
+      <span class="stat-icon">🌍</span>
+      <div class="stat-number" data-target="15">0</div>
+      <div class="stat-label">International Partners</div>
+    </div>
+    <div class="stat-item reveal delay-4">
+      <span class="stat-icon">🏆</span>
+      <div class="stat-number" data-target="12">0</div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal-left">
+      <div class="about-3d-card">
+        <div class="section-tag">🏛️ Who We Are</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.6rem; font-weight:700; margin-bottom:16px; line-height:1.3;">
+          Built for Somalia.<br>
+          <span style="color:var(--gold)">Recognized Globally.</span>
+        </h3>
+        <p style="font-size:0.88rem; color:var(--gray); line-height:1.8; margin-bottom:20px;">
+          Jobkey University (JU) is a premier non-profit institution established in 2011, committed to Somalia's development through quality education aligned with UN SDG 4.
+        </p>
+        <div class="about-values">
+          <div class="value-chip"><div class="value-chip-dot"></div>Academic Integrity</div>
+          <div class="value-chip"><div class="value-chip-dot"></div>Student Empowerment</div>
+          <div class="value-chip"><div class="value-chip-dot"></div>Research & Innovation</div>
+          <div class="value-chip"><div class="value-chip-dot"></div>Ethical Leadership</div>
+          <div class="value-chip"><div class="value-chip-dot"></div>Global Partnerships</div>
+          <div class="value-chip"><div class="value-chip-dot"></div>Lifelong Learning</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text reveal-right">
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">Shaping the <span>Future</span> of Somalia</h2>
+      <p class="about-text" style="color:var(--gray); line-height:1.8; margin-bottom:16px;">
+        Founded as a focal point for Somali development, Jobkey University strives to be among the leading universities in the Horn of Africa — recognized for academic excellence, student success, and research that drives sustainable growth.
+      </p>
+      <p style="color:var(--gray); line-height:1.8; margin-bottom:16px; font-size:0.95rem;">
+        Our graduates are working across the business sector, local and international NGOs, contributing to health, economics, communications, education, and technology sectors nationwide.
+      </p>
+      <div class="about-philosophy">
+        <p>"Students don't care how much you know until they know how much you care." — John C. Maxwell. This is the spirit Jobkey University teaches by.</p>
+      </div>
+
+      <div style="display:flex; gap:16px; margin-top:30px; flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:900; color:var(--teal);">Horn of Africa</span>
+          <span style="font-size:0.75rem; color:var(--gray); text-transform:uppercase; letter-spacing:1.5px;">Regional Ambition</span>
+        </div>
+        <div style="width:1px; background:var(--glass-border);"></div>
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:900; color:var(--gold);">SDG 4</span>
+          <span style="font-size:0.75rem; color:var(--gray); text-transform:uppercase; letter-spacing:1.5px;">UN Aligned</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FACULTIES ===== -->
+<section id="faculties">
+  <div class="grid-bg"></div>
+  <div class="faculties-header reveal">
+    <div class="section-tag">🎓 Academics</div>
+    <h2 class="section-title">Choose Your <span>Faculty</span></h2>
+    <p class="section-subtitle">Five world-class faculties offering undergraduate, postgraduate, and professional programs. Hover each card to explore programs.</p>
+  </div>
+
+  <div class="faculties-grid">
+    <!-- Card 1: Economics -->
+    <div class="faculty-card reveal delay-1" style="--faculty-color:#F4A724; --faculty-back:#1a1505;">
+      <div class="fc-inner">
+        <div class="fc-front">
+          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(244,167,36,0.12), transparent 70%);"></div>
+          <div class="fc-icon">📊</div>
+          <div class="fc-title">Economic & Management Science</div>
+          <div class="fc-sub">Business · Finance · Public Admin</div>
+        </div>
+        <div class="fc-back">
+          <div class="fc-back-title">📊 Programs Offered</div>
+          <ul class="fc-programs">
+            <li>Bachelor of Business Administration</li>
+            <li>Bachelor of International Relations</li>
+            <li>Bachelor of Accounting</li>
+            <li>Bachelor of Public Administration</li>
+            <li>Bachelor of Journalism</li>
+            <li>Bachelor of Islamic Banking</li>
+          </ul>
+          <a href="#cta" class="fc-apply" style="background:var(--gold); margin-top:16px;">Apply Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Medicine -->
+    <div class="faculty-card reveal delay-2" style="--faculty-color:#FF6B9D; --faculty-back:#1a0510;">
+      <div class="fc-inner">
+        <div class="fc-front">
+          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(255,107,157,0.12), transparent 70%);"></div>
+          <div class="fc-icon">🏥</div>
+          <div class="fc-title">Medicine & Health Science</div>
+          <div class="fc-sub">Clinical · Nursing · Public Health</div>
+        </div>
+        <div class="fc-back" style="border-color:rgba(255,107,157,0.3);">
+          <div class="fc-back-title">🏥 Programs Offered</div>
+          <ul class="fc-programs" style="--faculty-color:#FF6B9D;">
+            <li>Clinical Medicine</li>
+            <li>Public Health</li>
+            <li>Nursing</li>
+            <li>Medical Laboratory Science</li>
+          </ul>
+          <div style="font-size:0.78rem; color:var(--gray); margin-top:12px; padding:10px; background:rgba(255,107,157,0.08); border-radius:8px; border:1px solid rgba(255,107,157,0.2);">
+            🏨 Includes access to Jobkey Teaching Hospital
+          </div>
+          <a href="#cta" class="fc-apply" style="background:#FF6B9D; margin-top:16px;">Apply Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Computer Science -->
+    <div class="faculty-card reveal delay-3" style="--faculty-color:#00D4FF; --faculty-back:#05101a;">
+      <div class="fc-inner">
+        <div class="fc-front">
+          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(0,212,255,0.12), transparent 70%);"></div>
+          <div class="fc-icon">💻</div>
+          <div class="fc-title">Computer Science & Engineering</div>
+          <div class="fc-sub">Software · Networks · Engineering</div>
+        </div>
+        <div class="fc-back" style="border-color:rgba(0,212,255,0.3);">
+          <div class="fc-back-title">💻 Programs Offered</div>
+          <ul class="fc-programs" style="--faculty-color:#00D4FF;">
+            <li>Bachelor of Computer Science</li>
+            <li>Software Engineering</li>
+            <li>Information Technology</li>
+            <li>Computer Engineering</li>
+          </ul>
+          <a href="#cta" class="fc-apply" style="background:#00D4FF; margin-top:16px; color:#000;">Apply Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Agriculture -->
+    <div class="faculty-card reveal delay-4" style="--faculty-color:#4ADE80; --faculty-back:#051508;">
+      <div class="fc-inner">
+        <div class="fc-front">
+          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(74,222,128,0.12), transparent 70%);"></div>
+          <div class="fc-icon">🌾</div>
+          <div class="fc-title">Agriculture & Veterinary Sciences</div>
+          <div class="fc-sub">Agri · Animal Science · Food</div>
+        </div>
+        <div class="fc-back" style="border-color:rgba(74,222,128,0.3);">
+          <div class="fc-back-title">🌾 Programs Offered</div>
+          <ul class="fc-programs" style="--faculty-color:#4ADE80;">
+            <li>Bachelor of Agriculture</li>
+            <li>Veterinary Medicine</li>
+            <li>Animal Science</li>
+            <li>Food Technology</li>
+          </ul>
+          <a href="#cta" class="fc-apply" style="background:#4ADE80; margin-top:16px; color:#000;">Apply Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Sharia & Law -->
+    <div class="faculty-card reveal delay-5" style="--faculty-color:#A78BFA; --faculty-back:#0a0514;">
+      <div class="fc-inner">
+        <div class="fc-front">
+          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(167,139,250,0.12), transparent 70%);"></div>
+          <div class="fc-icon">⚖️</div>
+          <div class="fc-title">Sharia & Law</div>
+          <div class="fc-sub">Islamic Law · Legal Studies · Justice</div>
+        </div>
+        <div class="fc-back" style="border-color:rgba(167,139,250,0.3);">
+          <div class="fc-back-title">⚖️ Programs Offered</div>
+          <ul class="fc-programs" style="--faculty-color:#A78BFA;">
+            <li>Bachelor of Sharia</li>
+            <li>Bachelor of Law</li>
+            <li>Islamic Finance & Law</li>
+            <li>Good Governance</li>
+          </ul>
+          <a href="#cta" class="fc-apply" style="background:#A78BFA; margin-top:16px; color:#000;">Apply Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6: Postgraduate -->
+    <div class="faculty-card reveal delay-1" style="--faculty-color:#F97316; --faculty-back:#150900;">
+      <div class="fc-inner">
+        <div class="fc-front">
+          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(249,115,22,0.15), transparent 70%);"></div>
+          <div class="fc-icon">🎓</div>
+          <div class="fc-title">Graduate & Postgraduate</div>
+          <div class="fc-sub">MBA · Postgrad Diploma · Masters</div>
+        </div>
+        <div class="fc-back" style="border-color:rgba(249,115,22,0.3);">
+          <div class="fc-back-title">🎓 Graduate Programs</div>
+          <ul class="fc-programs" style="--faculty-color:#F97316;">
+            <li>MBA – Master of Business Administration</li>
+            <li>Postgraduate Diploma Programs</li>
+            <li>Social Science Masters</li>
+            <li>Distance Learning Programs</li>
+          </ul>
+          <a href="#cta" class="fc-apply" style="background:#F97316; margin-top:16px;">Apply Now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW TO UNLOCK ===== -->
+<section id="unlock">
+  <div class="unlock-inner">
+    <div class="reveal-left">
+      <div class="section-tag">🔑 Admissions</div>
+      <h2 class="section-title">How to <span>Unlock</span> Your Seat</h2>
+      <p class="section-subtitle">Three simple steps to join Jobkey University. We review every application personally.</p>
+
+      <div class="unlock-steps">
+        <div class="unlock-step" style="--step-color:#F4A724;">
+          <div class="step-number" style="background:rgba(244,167,36,0.15); color:var(--gold); border:2px solid var(--gold);">01</div>
+          <div class="step-content">
+            <h4>Fill The Application Form</h4>
+            <p>Complete the online application with your personal and academic details. No special formula — we review the whole person.</p>
+          </div>
+        </div>
+
+        <div class="unlock-step" style="--step-color:#00D4FF;">
+          <div class="step-number" style="background:rgba(0,212,255,0.15); color:var(--teal); border:2px solid var(--teal);">02</div>
+          <div class="step-content">
+            <h4>Submit Your Documents</h4>
+            <p>Gather: Secondary Certificate, Transcripts, Passport Photo, Recommendation Letter. Submit via email or in person.</p>
+          </div>
+        </div>
+
+        <div class="unlock-step" style="--step-color:#4ADE80;">
+          <div class="step-number" style="background:rgba(74,222,128,0.15); color:#4ADE80; border:2px solid #4ADE80;">03</div>
+          <div class="step-content">
+            <h4>Receive Your Decision</h4>
+            <p>The Admission Committee reviews and notifies you. Application fee is $35 (waivers available for financial hardship).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="unlock-visual reveal-right">
+      <div class="unlock-card featured">
+        <span class="uc-icon">📅</span>
+        <div class="uc-title">2 Intakes Per Year</div>
+        <div class="uc-text" style="font-size:0.9rem; margin-top:6px;">
+          <strong style="color:var(--gold)">First Intake:</strong> July – September (Deadline: Sep 10)<br>
+          <strong style="color:var(--teal)">Second Intake:</strong> December – February (Deadline: Feb 10)
+        </div>
+      </div>
+
+      <div class="unlock-card">
+        <span class="uc-icon">💰</span>
+        <div class="uc-title">Scholarships Available</div>
+        <div class="uc-text">3 types of financial aid for eligible students</div>
+      </div>
+
+      <div class="unlock-card">
+        <span class="uc-icon">🌐</span>
+        <div class="uc-title">Distance Learning</div>
+        <div class="uc-text">Flexible online programs for remote students</div>
+      </div>
+
+      <div class="unlock-card">
+        <span class="uc-icon">🏆</span>
+        <div class="uc-title">Globally Recognized</div>
+        <div class="uc-text">International Union of Universities member</div>
+      </div>
+
+      <div class="unlock-card">
+        <span class="uc-icon">🏥</span>
+        <div class="uc-title">Teaching Hospital</div>
+        <div class="uc-text">Hands-on clinical training facility on campus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCHOLARSHIPS ===== -->
+<section id="scholarships">
+  <div class="scholarships-inner">
+    <div class="scholarships-header">
+      <div>
+        <div class="section-tag reveal">💸 Financial Aid</div>
+        <h2 class="section-title reveal">Education Shouldn't Cost <span>a Dream</span></h2>
+        <p class="section-subtitle reveal">Jobkey believes every Somali deserves access to higher education. We offer three scholarship pathways.</p>
+      </div>
+      <a href="#contact-strip" class="btn-secondary reveal" style="white-space:nowrap;">Contact Scholarships Office →</a>
+    </div>
+
+    <div class="schol-grid">
+      <div class="schol-card reveal delay-1" style="--schol-color:#F4A724; --schol-rgb:244,167,36; --schol-glow:rgba(244,167,36,0.15);">
+        <div class="schol-badge">Institutional</div>
+        <span class="schol-icon">🏛️</span>
+        <div class="schol-title">Jobkey's Own Scholarships</div>
+        <div class="schol-text">Awarded to students from vulnerable communities through partnerships with local NGOs and school principals. Full and partial awards available.</div>
+        <a href="mailto:scholarships@jobkey.edu.so" class="schol-link">Apply via NGO referral →</a>
+      </div>
+
+      <div class="schol-card reveal delay-2" style="--schol-color:#A78BFA; --schol-rgb:167,139,250; --schol-glow:rgba(167,139,250,0.15);">
+        <div class="schol-badge" style="color:#A78BFA; background:rgba(167,139,250,0.1); border-color:rgba(167,139,250,0.3);">Foundation</div>
+        <span class="schol-icon">💜</span>
+        <div class="schol-title">Insania Foundation Scholarships</div>
+        <div class="schol-text">Full scholarships for students with disabilities and from low-income families who cannot afford tuition. Zero cost education for qualifying applicants.</div>
+        <a href="mailto:scholarships@jobkey.edu.so" class="schol-link" style="color:#A78BFA;">Apply via Foundation →</a>
+      </div>
+
+      <div class="schol-card reveal delay-3" style="--schol-color:#00D4FF; --schol-rgb:0,212,255; --schol-glow:rgba(0,212,255,0.15);">
+        <div class="schol-badge" style="color:#00D4FF; background:rgba(0,212,255,0.1); border-color:rgba(0,212,255,0.3);">State</div>
+        <span class="schol-icon">🇸🇴</span>
+        <div class="schol-title">State Scholarships</div>
+        <div class="schol-text">Financial assistance for Somali students where higher education access is hindered by financial constraints. Regulated by the Jobkey Board of Trustees.</div>
+        <a href="mailto:scholarships@jobkey.edu.so" class="schol-link" style="color:#00D4FF;">Apply via Board →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="reveal">
+      <div class="section-tag" style="justify-content:center; background:rgba(244,167,36,0.1); border-color:rgba(244,167,36,0.25); color:var(--gold);">🔑 The Key is in Your Hands</div>
+      <h2 style="margin-top:12px;">Ready to <span>Unlock</span> Your Future?</h2>
+      <p>Join thousands of Somali students building a better tomorrow at Jobkey University. Applications are open — take the first step today.</p>
+    </div>
+    <div class="cta-buttons reveal delay-2">
+      <a href="mailto:admission@jobkey.edu.so" class="btn-primary">🔑 Start Application</a>
+      <a href="https://www.facebook.com/JobkeyUniv" target="_blank" class="btn-secondary">💬 Contact Us</a>
+    </div>
+
+    <div class="intake-info reveal delay-3">
+      <div class="intake-item">
+        <div class="intake-item-title">🟡 First Intake</div>
+        <div class="intake-item-date">July – September</div>
+        <div class="intake-item-deadline">Deadline: September 10</div>
+      </div>
+      <div class="intake-item">
+        <div class="intake-item-title">🔵 Second Intake</div>
+        <div class="intake-item-date">December – February</div>
+        <div class="intake-item-deadline">Deadline: February 10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT STRIP ===== -->
+<div id="contact-strip">
+  <div class="contact-strip-inner">
+    <div class="contact-item">
+      <div class="ci-icon">📍</div>
+      <div>
+        <div class="ci-label">Campus Address</div>
+        <div class="ci-value">Tarabun Street, Taleeh, Hodan District, Mogadishu</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-icon">📞</div>
+      <div>
+        <div class="ci-label">Main Office</div>
+        <div class="ci-value">+252 615 600 010</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-icon">✉️</div>
+      <div>
+        <div class="ci-label">General Email</div>
+        <div class="ci-value">info@jobkey.edu.so</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-icon">🎓</div>
+      <div>
+        <div class="ci-label">Admissions</div>
+        <div class="ci-value">admission@jobkey.edu.so</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-icon">💰</div>
+      <div>
+        <div class="ci-label">Scholarships</div>
+        <div class="ci-value">scholarships@jobkey.edu.so</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="margin-bottom:8px;">
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+          <circle cx="18" cy="18" r="13" stroke="#F4A724" stroke-width="3" fill="none"/>
+          <circle cx="18" cy="18" r="7" stroke="#F4A724" stroke-width="2" fill="rgba(244,167,36,0.1)"/>
+          <text x="15" y="23" font-family="Orbitron,sans-serif" font-size="10" font-weight="900" fill="#F4A724">J</text>
+          <line x1="28" y1="18" x2="46" y2="18" stroke="#F4A724" stroke-width="3" stroke-linecap="round"/>
+          <line x1="40" y1="18" x2="40" y2="24" stroke="#F4A724" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="34" y1="18" x2="34" y2="22" stroke="#F4A724" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="44" y1="18" x2="44" y2="21" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="nav-brand">
+          <div class="nav-brand-name">JOB<span>KEY</span></div>
+          <div class="nav-brand-sub">University · Somalia</div>
+        </div>
+      </a>
+      <p>Unlocking potential, building futures. Somalia's premier non-profit university serving the Somali community since 2011.</p>
+      <div class="social-links">
+        <a href="http://facebook.com/JobkeyUniv" target="_blank" class="social-link">📘</a>
+        <a href="#" class="social-link">🐦</a>
+        <a href="#" class="social-link">📸</a>
+        <a href="#" class="social-link">💼</a>
+        <a href="https://www.youtube.com/watch?v=PNE-kl-34Hg" target="_blank" class="social-link">▶️</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>The University</h4>
+      <ul>
+        <li><a href="#">About Jobkey</a></li>
+        <li><a href="#">History</a></li>
+        <li><a href="#">Strategy</a></li>
+        <li><a href="#">Governance</a></li>
+        <li><a href="#">Rector's Message</a></li>
+        <li><a href="#">Development</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Academics</h4>
+      <ul>
+        <li><a href="#">Economic & Management</a></li>
+        <li><a href="#">Medicine & Health</a></li>
+        <li><a href="#">Computer Science</a></li>
+        <li><a href="#">Agriculture</a></li>
+        <li><a href="#">Sharia & Law</a></li>
+        <li><a href="#">Postgraduate</a></li>
+        <li><a href="#">Distance Learning</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Student Life</h4>
+      <ul>
+        <li><a href="#">Apply Now</a></li>
+        <li><a href="#">Scholarships</a></li>
+        <li><a href="#">Alumni Network</a></li>
+        <li><a href="#">Sports Center</a></li>
+        <li><a href="#">Event Calendar</a></li>
+        <li><a href="https://candidate.speedexam.net/signin.aspx?site=jobkeyuniver7">Online Exams</a></li>
+        <li><a href="http://jobkeyportal.com">Student Portal</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 <a href="#">Jobkey University</a>. All rights reserved. Mogadishu, Somalia.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== PARTICLE CANVAS =====
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 1.8 + 0.3;
+    this.speedX = (Math.random() - 0.5) * 0.4;
+    this.speedY = (Math.random() - 0.5) * 0.4;
+    this.opacity = Math.random() * 0.5 + 0.1;
+    this.color = Math.random() > 0.6 ? '#F4A724' : Math.random() > 0.5 ? '#00D4FF' : '#ffffff';
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = this.opacity;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+// Draw connections
+function drawConnections() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        ctx.save();
+        ctx.globalAlpha = (1 - dist/100) * 0.06;
+        ctx.strokeStyle = '#F4A724';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+  }
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawConnections();
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+});
+
+// ===== REVEAL ON SCROLL =====
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
+
+// ===== COUNTER ANIMATION =====
+const counters = document.querySelectorAll('[data-target]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = parseInt(entry.target.getAttribute('data-target'));
+      let count = 0;
+      const increment = target / 80;
+      const timer = setInterval(() => {
+        count = Math.min(count + increment, target);
+        entry.target.textContent = Math.floor(count) + (target >= 1000 ? '+' : target >= 10 ? '' : '');
+        if (count >= target) {
+          clearInterval(timer);
+          entry.target.textContent = target >= 1000 ? target.toLocaleString() + '+' : target + '+';
+        }
+      }, 20);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+// ===== 3D TILT ON ABOUT CARD =====
+const card3d = document.querySelector('.about-3d-card');
+if (card3d) {
+  const parent = card3d.parentElement;
+  parent.addEventListener('mousemove', (e) => {
+    const rect = parent.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card3d.style.transform = `rotateY(${x * 15}deg) rotateX(${-y * 10}deg)`;
+  });
+  parent.addEventListener('mouseleave', () => {
+    card3d.style.transform = 'rotateY(-5deg) rotateX(3deg)';
+  });
+}
+
+// ======================================================
+// INTRO ANIMATION CONTROLLER
+// Timeline (seconds):
+//   0.0  - Stars + floor appear (CSS auto)
+//   0.5  - Door scene fades in (CSS auto)
+//   1.5  - Key slides in from left
+//   2.8  - Key turns / unlocks
+//   3.2  - Unlock burst + door shake
+//   3.8  - Door begins to swing open
+//   4.5  - Light floods + university name revealed
+//   5.5  - People/jobs scene appears
+//   6.5  - Enter button appears
+//   9.0  - Auto-dismiss if user hasn't clicked
+// ======================================================
+
+// ======================================================
+// PERMANENT LOOPING DOOR ANIMATION
+// Plays forever — resets and restarts every ~11 seconds
+// Sequence per loop:
+//   0.0s  - Stars / scene ready (door closed)
+//   0.8s  - Key slides in from left
+//   2.2s  - Key turns / unlocks
+//   2.7s  - Sparks + door shake
+//   3.2s  - Door swings open (3D)
+//   4.0s  - Light floods + name revealed
+//   5.0s  - People/jobs scene walks in
+//   7.0s  - Hold (enjoy the view)
+//   8.5s  - Fade out everything
+//   9.5s  - Hard reset → loop restart
+// ======================================================
+
+(function() {
+  'use strict';
+
+  // Generate background stars once
+  const starsEl = document.getElementById('intro-stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'intro-star';
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${2 + Math.random()*3}s;
+      opacity:${0.1 + Math.random()*0.4};
+      width:${1 + Math.random()*2}px;
+      height:${1 + Math.random()*2}px;
+    `;
+    starsEl.appendChild(s);
+  }
+
+  const keyWrapper   = document.getElementById('key-wrapper');
+  const doorPanel    = document.getElementById('door-panel');
+  const doorFrame    = document.getElementById('door-frame');
+  const doorLight    = document.getElementById('door-light');
+  const lightRays    = document.getElementById('light-rays');
+  const introReveal  = document.getElementById('intro-reveal');
+  const peopleScene  = document.getElementById('people-scene');
+  const unlockBurst  = document.getElementById('unlock-burst');
+  const scrollHint   = document.getElementById('scroll-down-hint');
+
+  // Show scroll hint after first loop
+  setTimeout(() => { if (scrollHint) scrollHint.style.opacity = '1'; }, 5000);
+
+  let loopTimers = [];
+
+  function clearAllTimers() {
+    loopTimers.forEach(clearTimeout);
+    loopTimers = [];
+  }
+
+  function t(fn, ms) {
+    loopTimers.push(setTimeout(fn, ms));
+  }
+
+  function resetState() {
+    // Reset door
+    doorPanel.classList.remove('door-open');
+    doorFrame.classList.remove('door-open-active');
+    doorFrame.style.animation = '';
+    doorLight.style.opacity = '0';
+    doorLight.style.transition = 'none';
+    lightRays.style.opacity = '0';
+    lightRays.style.transition = 'none';
+
+    // Reset key
+    keyWrapper.style.opacity = '1';
+    keyWrapper.style.transition = 'none';
+    keyWrapper.classList.remove('key-slide-in', 'key-turn');
+    keyWrapper.style.animation = 'none';
+    void keyWrapper.offsetWidth; // force reflow
+
+    // Reset reveal
+    introReveal.classList.remove('show');
+    introReveal.style.opacity = '0';
+
+    // Reset people
+    peopleScene.classList.remove('show');
+    peopleScene.style.opacity = '0';
+
+    // Reset burst
+    unlockBurst.classList.remove('active');
+    unlockBurst.innerHTML = `
+      <svg width="60" height="60" viewBox="0 0 60 60">
+        <circle cx="30" cy="30" r="20" fill="none" stroke="#F4A724" stroke-width="2" opacity="0.8"/>
+        <circle cx="30" cy="30" r="10" fill="rgba(244,167,36,0.4)"/>
+        <text x="22" y="35" font-size="14" fill="#F4A724">✓</text>
+      </svg>`;
+
+    // Re-enable transitions (after 1 frame)
+    requestAnimationFrame(() => {
+      doorLight.style.transition = 'opacity 0.4s 0s ease';
+      lightRays.style.transition = 'opacity 0.6s 0s ease';
+    });
+  }
+
+  function fadeOutAll() {
+    const overlay = document.getElementById('intro-overlay');
+    if (overlay) overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.8s ease';
+  }
+
+  function fadeInAll() {
+    const overlay = document.getElementById('intro-overlay');
+    if (overlay) {
+      overlay.style.transition = 'opacity 0.6s ease';
+      overlay.style.opacity = '1';
+    }
+  }
+
+  function runLoop() {
+    clearAllTimers();
+
+    // T+0 — make sure scene is visible
+    fadeInAll();
+    resetState();
+
+    // T+800ms — key slides in
+    t(() => {
+      keyWrapper.style.animation = '';
+      void keyWrapper.offsetWidth;
+      keyWrapper.classList.add('key-slide-in');
+    }, 800);
+
+    // T+2200ms — key turns
+    t(() => {
+      keyWrapper.classList.remove('key-slide-in');
+      void keyWrapper.offsetWidth;
+      keyWrapper.classList.add('key-turn');
+    }, 2200);
+
+    // T+2700ms — unlock burst + door shake
+    t(() => {
+      unlockBurst.classList.add('active');
+      doorFrame.style.animation = 'doorShake 0.4s ease';
+      for (let i = 0; i < 12; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'burst-spark';
+        const angle = (i / 12) * Math.PI * 2;
+        const dist = 30 + Math.random() * 40;
+        spark.style.cssText = `
+          left: calc(50% - 2px);
+          top: calc(50% - 2px);
+          background: ${Math.random() > 0.5 ? '#F4A724' : '#00D4FF'};
+          --sparkDest: translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px);
+          animation-delay: ${Math.random()*0.15}s;
+          animation-duration: ${0.5 + Math.random()*0.3}s;
+        `;
+        unlockBurst.appendChild(spark);
+      }
+    }, 2700);
+
+    // T+3200ms — door swings open
+    t(() => {
+      doorPanel.classList.add('door-open');
+      doorFrame.classList.add('door-open-active');
+      t(() => { doorLight.style.opacity = '1'; }, 400);
+      t(() => { lightRays.style.opacity = '1'; }, 700);
+    }, 3200);
+
+    // T+4000ms — university name
+    t(() => {
+      introReveal.classList.add('show');
+      introReveal.style.opacity = '';
+      keyWrapper.style.transition = 'opacity 0.5s ease';
+      keyWrapper.style.opacity = '0';
+    }, 4000);
+
+    // T+5000ms — people / jobs scene
+    t(() => {
+      peopleScene.classList.add('show');
+      peopleScene.style.opacity = '';
+    }, 5000);
+
+    // T+8500ms — fade out entire section
+    t(() => { fadeOutAll(); }, 8500);
+
+    // T+9500ms — hard reset, restart loop
+    t(() => { runLoop(); }, 9500);
+  }
+
+  // Start!
+  runLoop();
+
+})();
+
+// ===== SMOOTH ACTIVE NAV =====
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    const top = s.offsetTop - 100;
+    if (window.scrollY >= top) current = s.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.style.color = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--gold)';
+    }
+  });
+});
+</script>
+</body>
+</html>
