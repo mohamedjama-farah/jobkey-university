@@ -1952,6 +1952,172 @@
     background-size: 50px 50px;
     pointer-events: none;
   }
+
+  /* =====================================================
+     MOBILE RESPONSIVE STYLES
+     Breakpoints: 768px (tablet), 480px (phone)
+  ===================================================== */
+
+  @media (max-width: 768px) {
+
+    /* ---- INTRO ANIMATION ---- */
+    #intro-overlay { height: 100svh; min-height: 500px; }
+    .door-frame { width: 160px; height: 260px; }
+    .door-frame::before { inset: -14px -16px; }
+    .door-frame::after { top: -28px; left: -16px; right: -16px; height: 30px; }
+    .door-inset-top { height: 70px; }
+    .door-inset-mid { top: 100px; height: 60px; }
+    .door-inset-bot { top: 172px; height: 70px; }
+    .key-svg { width: 70px; height: 28px; }
+    .intro-univ-name { font-size: 1.8rem; letter-spacing: 2px; }
+    .intro-tagline { font-size: 0.75rem; letter-spacing: 3px; }
+    .person { font-size: 1.6rem; }
+    .job-badge { font-size: 0.55rem; padding: 3px 8px; }
+
+    /* ---- NAVBAR ---- */
+    nav { padding: 0 4%; height: 64px; }
+    nav.scrolled { height: 56px; }
+    .nav-brand span:first-child { font-size: 1rem; }
+    .nav-brand span:last-child { font-size: 0.55rem; }
+    .nav-links { display: none; }
+    .nav-cta { padding: 8px 16px; font-size: 0.75rem; }
+
+    /* Mobile hamburger menu */
+    .nav-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ---- HERO ---- */
+    .hero-inner {
+      grid-template-columns: 1fr !important;
+      text-align: center;
+      gap: 40px;
+      padding-top: 100px;
+    }
+    .hero-text { order: 2; }
+    .hero-visual { order: 1; }
+    .hero-badge { margin: 0 auto 20px; }
+    .hero-title { font-size: 2rem !important; }
+    .hero-sub { font-size: 0.9rem !important; }
+    .hero-ctas { justify-content: center; flex-wrap: wrap; }
+    .hero-float-cards { display: none; }
+    .hero-svg-wrap svg { width: 200px; height: 200px; }
+
+    /* ---- STATS ---- */
+    .stats-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px;
+    }
+
+    /* ---- ABOUT ---- */
+    .about-grid {
+      grid-template-columns: 1fr !important;
+      gap: 40px;
+    }
+    .about-visual { display: none; }
+    .section-title { font-size: 1.6rem !important; }
+
+    /* ---- FACULTY ---- */
+    .faculty-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px;
+    }
+    .faculty-card { height: 260px; }
+
+    /* ---- ADMISSIONS ---- */
+    .unlock-steps {
+      grid-template-columns: 1fr !important;
+      gap: 20px;
+    }
+
+    /* ---- SCHOLARSHIPS ---- */
+    .scholarships-grid {
+      grid-template-columns: 1fr !important;
+      gap: 24px;
+    }
+
+    /* ---- CTA ---- */
+    .cta-inner { padding: 50px 24px !important; }
+    .cta-title { font-size: 1.6rem !important; }
+    .cta-dates { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+
+    /* ---- CONTACT ---- */
+    .contact-strip {
+      flex-direction: column !important;
+      gap: 20px;
+      text-align: center;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 32px;
+    }
+    .footer-bottom {
+      flex-direction: column !important;
+      gap: 12px;
+      text-align: center;
+    }
+
+    /* ---- SECTIONS PADDING ---- */
+    section, #about, #faculty, #admissions, #scholarships, #stats {
+      padding: 60px 5% !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    /* ---- INTRO ---- */
+    .door-frame { width: 130px; height: 210px; }
+    .intro-univ-name { font-size: 1.4rem; }
+    .intro-tagline { font-size: 0.65rem; letter-spacing: 2px; }
+
+    /* ---- HERO ---- */
+    .hero-title { font-size: 1.6rem !important; }
+    .hero-sub { font-size: 0.82rem !important; }
+    .hero-ctas a, .hero-ctas button {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+
+    /* ---- STATS ---- */
+    .stats-grid { grid-template-columns: 1fr 1fr !important; }
+    .stat-number { font-size: 1.8rem !important; }
+
+    /* ---- FACULTY ---- */
+    .faculty-grid { grid-template-columns: 1fr !important; }
+
+    /* ---- FOOTER ---- */
+    .footer-grid { grid-template-columns: 1fr !important; }
+
+    /* ---- SECTIONS PADDING ---- */
+    section, #about, #faculty, #admissions, #scholarships, #stats {
+      padding: 50px 4% !important;
+    }
+
+    /* ---- SECTION TITLES ---- */
+    .section-title { font-size: 1.4rem !important; }
+    .section-sub { font-size: 0.82rem !important; }
+
+    /* ---- CTA DATES ---- */
+    .cta-dates { grid-template-columns: 1fr !important; }
+  }
+
+  /* Hamburger button — hidden on desktop */
+  .nav-hamburger { display: none; }
 </style>
 </head>
 <body>
@@ -2169,7 +2335,32 @@
     <li><a href="https://candidate.speedexam.net/signin.aspx?site=jobkeyuniver7" target="_blank">EXAM</a></li>
     <li><a href="http://jobkeyportal.com" target="_blank" class="nav-cta">Student Portal →</a></li>
   </ul>
+
+  <!-- Mobile hamburger -->
+  <div class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+
+<!-- Mobile menu drawer -->
+<div id="mobile-menu" style="
+  display:none;
+  position:fixed;
+  top:64px; left:0; right:0;
+  background:rgba(7,11,26,0.98);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  z-index:999;
+  padding:20px 6%;
+  flex-direction:column;
+  gap:4px;
+">
+  <a href="#about"       onclick="closeMobileMenu()" style="color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.95rem;">About</a>
+  <a href="#faculty"     onclick="closeMobileMenu()" style="color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.95rem;">Faculties</a>
+  <a href="#admissions"  onclick="closeMobileMenu()" style="color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.95rem;">Admissions</a>
+  <a href="#scholarships"onclick="closeMobileMenu()" style="color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.95rem;">Scholarships</a>
+  <a href="http://jobkeyportal.com" target="_blank" style="margin-top:12px;display:block;text-align:center;background:linear-gradient(135deg,#F4A724,#FFD166);color:#050810;padding:12px 24px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;">Student Portal →</a>
+</div>
 
 <!-- ===== HERO ===== -->
 <section id="hero">
@@ -3117,6 +3308,20 @@ if (card3d) {
   runLoop();
 
 })();
+
+// ===== MOBILE MENU =====
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const isOpen = menu.style.display === 'flex';
+  menu.style.display = isOpen ? 'none' : 'flex';
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').style.display = 'none';
+}
+// Close mobile menu on scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mobile-menu').style.display = 'none';
+}, { passive: true });
 
 // ===== SMOOTH ACTIVE NAV =====
 const sections = document.querySelectorAll('section[id], div[id]');
