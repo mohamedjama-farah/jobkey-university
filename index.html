@@ -1958,123 +1958,128 @@
      Breakpoints: 768px (tablet), 480px (phone)
   ===================================================== */
 
+  /* =============================================
+     MOBILE — 768px and below
+  ============================================= */
   @media (max-width: 768px) {
 
     /* ---- INTRO ANIMATION ---- */
     #intro-overlay { height: 100svh; min-height: 500px; }
-    .door-frame { width: 160px; height: 260px; }
-    .door-frame::before { inset: -14px -16px; }
-    .door-frame::after { top: -28px; left: -16px; right: -16px; height: 30px; }
-    .door-inset-top { height: 70px; }
-    .door-inset-mid { top: 100px; height: 60px; }
-    .door-inset-bot { top: 172px; height: 70px; }
-    .key-svg { width: 70px; height: 28px; }
-    .intro-univ-name { font-size: 1.8rem; letter-spacing: 2px; }
-    .intro-tagline { font-size: 0.75rem; letter-spacing: 3px; }
-    .person { font-size: 1.6rem; }
-    .job-badge { font-size: 0.55rem; padding: 3px 8px; }
+    .door-frame { width: 140px; height: 230px; }
+    .door-frame::before { inset: -12px -14px; }
+    .door-frame::after { top: -24px; left: -14px; right: -14px; height: 26px; }
+    .door-inset-top { height: 60px; }
+    .door-inset-mid { top: 88px; height: 52px; }
+    .door-inset-bot { top: 152px; height: 60px; }
+    .key-svg { width: 60px; height: 24px; }
+    .intro-univ-name { font-size: 1.5rem !important; letter-spacing: 2px; }
+    .intro-tagline { font-size: 0.7rem !important; letter-spacing: 3px; }
+    .person { font-size: 1.4rem; }
+    .job-badge { font-size: 0.5rem; padding: 3px 7px; }
 
     /* ---- NAVBAR ---- */
-    nav { padding: 0 4%; height: 64px; }
-    nav.scrolled { height: 56px; }
-    .nav-brand span:first-child { font-size: 1rem; }
-    .nav-brand span:last-child { font-size: 0.55rem; }
-    .nav-links { display: none; }
-    .nav-cta { padding: 8px 16px; font-size: 0.75rem; }
+    nav { padding: 0 4%; height: 60px; }
+    nav.scrolled { height: 54px; }
+    .nav-links { display: none !important; }
+    .nav-cta { display: none !important; }    /* hidden on mobile — in hamburger menu */
+    .nav-hamburger { display: flex !important; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #1533A0; border-radius: 2px; transition: all 0.3s; }
+    /* Logo shrink */
+    .nav-brand-name { font-size: 1rem !important; }
 
-    /* Mobile hamburger menu */
-    .nav-hamburger {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 6px;
-    }
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
+    /* Mobile menu panel */
+    #mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: #FFFFFF !important; border-top: 2px solid #1533A0 !important; z-index: 999; padding: 16px 0; box-shadow: 0 8px 24px rgba(21,51,160,0.15); }
+    #mobile-menu.open { display: block; }
+    #mobile-menu a { display: block; padding: 14px 24px; color: #0A1547 !important; font-weight: 600; font-size: 0.95rem; border-bottom: 1px solid rgba(21,51,160,0.08); text-decoration: none; }
+    #mobile-menu a:hover { background: #F2F7FF; color: #1533A0 !important; }
+    #mobile-menu .mobile-cta-link { background: #1533A0; color: #FFFFFF !important; margin: 12px 16px 4px; border-radius: 10px; text-align: center; border-bottom: none; }
 
     /* ---- HERO ---- */
+    #hero { padding: 90px 5% 60px !important; }
     .hero-inner {
       grid-template-columns: 1fr !important;
       text-align: center;
-      gap: 40px;
-      padding-top: 100px;
-    }
-    .hero-text { order: 2; }
-    .hero-visual { order: 1; }
-    .hero-badge { margin: 0 auto 20px; }
-    .hero-title { font-size: 2rem !important; }
-    .hero-sub { font-size: 0.9rem !important; }
-    .hero-ctas { justify-content: center; flex-wrap: wrap; }
-    .hero-float-cards { display: none; }
-    .hero-svg-wrap svg { width: 200px; height: 200px; }
-
-    /* ---- STATS ---- */
-    .stats-grid {
-      grid-template-columns: 1fr 1fr !important;
-      gap: 20px;
-    }
-
-    /* ---- ABOUT ---- */
-    .about-grid {
-      grid-template-columns: 1fr !important;
-      gap: 40px;
-    }
-    .about-visual { display: none; }
-    .section-title { font-size: 1.6rem !important; }
-
-    /* ---- FACULTY ---- */
-    .faculty-grid {
-      grid-template-columns: 1fr 1fr !important;
-      gap: 20px;
-    }
-    .faculty-card { height: 260px; }
-
-    /* ---- ADMISSIONS ---- */
-    .unlock-steps {
-      grid-template-columns: 1fr !important;
-      gap: 20px;
-    }
-
-    /* ---- SCHOLARSHIPS ---- */
-    .scholarships-grid {
-      grid-template-columns: 1fr !important;
-      gap: 24px;
-    }
-
-    /* ---- CTA ---- */
-    .cta-inner { padding: 50px 24px !important; }
-    .cta-title { font-size: 1.6rem !important; }
-    .cta-dates { grid-template-columns: 1fr 1fr !important; gap: 12px; }
-
-    /* ---- CONTACT ---- */
-    .contact-strip {
-      flex-direction: column !important;
-      gap: 20px;
-      text-align: center;
-    }
-
-    /* ---- FOOTER ---- */
-    .footer-grid {
-      grid-template-columns: 1fr 1fr !important;
       gap: 32px;
     }
-    .footer-bottom {
-      flex-direction: column !important;
-      gap: 12px;
-      text-align: center;
-    }
+    .hero-text { order: 2; }
+    .hero-visual { order: 1; display: flex; justify-content: center; }
+    .hero-badge { margin: 0 auto 16px; }
+    .hero-title { font-size: 2rem !important; line-height: 1.2 !important; }
+    .hero-sub { font-size: 0.88rem !important; }
+    .hero-ctas { justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .hero-float-cards { display: none !important; }
+    .hero-svg-wrap svg { width: 180px !important; height: 180px !important; }
 
-    /* ---- SECTIONS PADDING ---- */
-    section, #about, #faculty, #admissions, #scholarships, #stats {
-      padding: 60px 5% !important;
+    /* ---- STATS ---- */
+    #stats { padding: 50px 5% !important; }
+    .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 16px; }
+    .stat-number { font-size: 2rem !important; }
+    .stat-label { font-size: 0.7rem !important; }
+
+    /* ---- ABOUT ---- */
+    #about { padding: 60px 5% !important; }
+    .about-grid { grid-template-columns: 1fr !important; gap: 32px; }
+    .about-visual { display: none !important; }
+    .section-title { font-size: 1.5rem !important; }
+    .about-values { grid-template-columns: 1fr !important; gap: 10px; }
+    .about-philosophy { padding: 16px !important; }
+    .about-philosophy p { font-size: 0.85rem !important; }
+
+    /* ---- FACULTY ---- */
+    #faculties { padding: 60px 5% !important; }
+    .faculty-grid { grid-template-columns: 1fr 1fr !important; gap: 16px; }
+    .faculty-card { height: auto !important; min-height: 220px; }
+
+    /* ---- ADMISSIONS ---- */
+    #admissions { padding: 60px 5% !important; }
+    .unlock-steps { grid-template-columns: 1fr !important; gap: 16px; }
+    .uc-grid { grid-template-columns: 1fr !important; gap: 16px; }
+
+    /* ---- SCHOLARSHIPS ---- */
+    #scholarships { padding: 60px 5% !important; }
+    .schol-grid { grid-template-columns: 1fr !important; gap: 20px; }
+    .schol-card { padding: 24px !important; }
+
+    /* ---- CTA ---- */
+    #cta { padding: 60px 5% !important; }
+    .cta-inner { padding: 40px 20px !important; }
+    .cta-title { font-size: 1.5rem !important; }
+    .cta-dates { grid-template-columns: 1fr !important; gap: 12px; }
+    .cta-btns { flex-direction: column !important; align-items: center; gap: 12px; }
+    .cta-btn-primary, .cta-btn-secondary { width: 100%; max-width: 280px; text-align: center; }
+
+    /* ---- CONTACT STRIP ---- */
+    #contact-strip { padding: 24px 5% !important; }
+    .contact-strip-inner {
+      flex-direction: column !important;
+      gap: 16px !important;
+      align-items: flex-start !important;
     }
+    .contact-item { gap: 10px; }
+    .ci-icon { width: 36px !important; height: 36px !important; font-size: 0.9rem !important; }
+
+    /* ---- FOOTER ---- */
+    footer { padding: 48px 5% 24px !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 28px; }
+    .footer-bottom { flex-direction: column !important; gap: 10px; text-align: center; }
+    .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+    /* ---- GENERAL SECTIONS ---- */
+    .section-sub { font-size: 0.85rem !important; }
+    .section-tag { font-size: 0.7rem !important; }
+  }
+
+  /* =============================================
+     SMALL MOBILE — 480px and below
+  ============================================= */
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr 1fr !important; }
+    .faculty-grid { grid-template-columns: 1fr !important; }
+    .footer-grid { grid-template-columns: 1fr !important; }
+    .hero-title { font-size: 1.7rem !important; }
+    .section-title { font-size: 1.3rem !important; }
+    .cta-title { font-size: 1.3rem !important; }
+    nav { padding: 0 3%; }
   }
 
   @media (max-width: 480px) {
@@ -2374,6 +2379,22 @@
   /* ---- SCHOL CARD AFTER (glowing circle) — fix on white bg ---- */
   .schol-card::after {
     background: radial-gradient(circle at top right, rgba(41,197,246,0.18), transparent 70%) !important;
+  }
+
+  /* ====================================================
+     CONTACT STRIP — dark text on near-white background
+  ==================================================== */
+  #contact-strip {
+    background: #EEF4FF !important;
+    border-top: 2px solid #29C5F6 !important;
+    border-bottom: 2px solid rgba(21,51,160,0.1) !important;
+  }
+  #contact-strip .ci-label { color: #4A5A80 !important; }
+  #contact-strip .ci-value { color: #0A1547 !important; }
+  #contact-strip .contact-item { color: #0A1547 !important; }
+  #contact-strip .ci-icon {
+    background: rgba(21,51,160,0.10) !important;
+    color: #1533A0 !important;
   }
 </style>
 </head>
