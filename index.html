@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #F2F7FF;
+    --navy: #0A1547;
     --navy2: #FFFFFF;
     --navy3: #E6EFFF;
     --gold: #29C5F6;
@@ -2249,6 +2249,132 @@
   /* Progress bars */
   .progress-fill { background: linear-gradient(90deg, #1533A0, #29C5F6) !important; }
   .progress-bar { background: rgba(21,51,160,0.1) !important; }
+
+  /* =====================================================
+     TEXT VISIBILITY FIXES — all readable, no invisible text
+  ===================================================== */
+
+  /* ---- NAV CTA BUTTON ---- */
+  .nav-cta,
+  a.nav-cta,
+  li a.nav-cta,
+  ul li a.nav-cta {
+    background: #1533A0 !important;
+    color: #FFFFFF !important;
+    border-color: #1533A0 !important;
+    font-weight: 700 !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+  }
+  .nav-cta:hover, a.nav-cta:hover {
+    background: #29C5F6 !important;
+    color: #FFFFFF !important;
+    border-color: #29C5F6 !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+  }
+
+  /* ---- SCHOLARSHIP CARDS: white cards, dark readable text ---- */
+  .schol-card {
+    background: rgba(255,255,255,0.95) !important;
+    border: 1px solid rgba(21,51,160,0.18) !important;
+    box-shadow: 0 8px 30px rgba(21,51,160,0.12) !important;
+  }
+  .schol-card:hover {
+    background: #FFFFFF !important;
+    border-color: #1533A0 !important;
+    box-shadow: 0 16px 40px rgba(21,51,160,0.22) !important;
+  }
+  /* Override the blanket white-text rule for card contents */
+  #scholarships .schol-card .schol-title { color: #0A1547 !important; }
+  #scholarships .schol-card .schol-text  { color: #334477 !important; }
+  #scholarships .schol-card .schol-link  { color: #1533A0 !important; font-weight: 700 !important; }
+  #scholarships .schol-card .schol-badge { color: #1533A0 !important; background: rgba(21,51,160,0.08) !important; border-color: rgba(21,51,160,0.25) !important; }
+  /* Scholarship section heading & subtext stay white (on blue bg) */
+  #scholarships > .container > .section-tag  { color: #29C5F6 !important; background: rgba(255,255,255,0.12) !important; border-color: rgba(255,255,255,0.25) !important; }
+  #scholarships > .container > .section-title { color: #FFFFFF !important; }
+  #scholarships > .container > .section-sub   { color: rgba(255,255,255,0.85) !important; }
+  #scholarships .schol-contact { color: rgba(255,255,255,0.9) !important; }
+  #scholarships .schol-contact a { color: #29C5F6 !important; }
+
+  /* ---- FACULTY CARDS: all text dark ---- */
+  .faculty-card .faculty-name    { color: #0A1547 !important; }
+  .faculty-card .faculty-role    { color: #4A5A80 !important; }
+  .faculty-card .faculty-dept    { color: #4A5A80 !important; }
+  .faculty-card .faculty-courses { color: #334477 !important; }
+  .faculty-card .faculty-tag     { color: #1533A0 !important; background: rgba(21,51,160,0.08) !important; }
+
+  /* ---- ADMISSIONS CARDS: all text dark ---- */
+  .adm-card h3  { color: #0A1547 !important; }
+  .adm-card p   { color: #334477 !important; }
+  .adm-card li  { color: #334477 !important; }
+  .adm-card strong { color: #0A1547 !important; }
+  .adm-step-num { background: #1533A0 !important; color: #FFFFFF !important; }
+  .adm-step-label { color: #0A1547 !important; }
+
+  /* ---- GLASS CARDS: all text dark ---- */
+  .glass-card h1, .glass-card h2, .glass-card h3,
+  .glass-card h4, .glass-card p, .glass-card span,
+  .glass-card li, .glass-card strong { color: #0A1547 !important; }
+
+  /* ---- ABOUT SECTION: all text dark ---- */
+  #about h1, #about h2, #about h3, #about h4 { color: #1533A0 !important; }
+  #about p, #about li, #about span            { color: #334477 !important; }
+  .about-title  { color: #1533A0 !important; }
+  .about-text   { color: #334477 !important; }
+
+  /* Philosophy / quote card — was white-on-white */
+  .about-philosophy {
+    background: rgba(21,51,160,0.07) !important;
+    border-color: #29C5F6 !important;
+  }
+  .about-philosophy p { color: #1533A0 !important; font-style: italic !important; }
+
+  /* Value chips — readable dark text on light chip */
+  .value-chip { color: #0A1547 !important; }
+  .value-chip-dot { background: #29C5F6 !important; }
+
+  /* Faculty section — force light background (overrides var(--navy)) */
+  #faculties { background: #F2F7FF !important; }
+
+  /* Any inline color:var(--gray) on the about right column */
+  .about-text [style*="color:var(--gray)"],
+  [style*="color:var(--gray)"] { color: #4A5A80 !important; }
+
+  /* ---- HERO SECTION: all text white (stays on dark bg) ---- */
+  #hero h1, #hero h2, #hero p, #hero span, #hero li { color: #FFFFFF !important; }
+
+  /* ---- STATS: numbers cyan, labels white ---- */
+  .stat-number { color: #29C5F6 !important; font-weight: 900 !important; }
+  .stat-label  { color: rgba(255,255,255,0.9) !important; }
+  #stats h1, #stats h2, #stats h3, #stats p, #stats span { color: #FFFFFF !important; }
+
+  /* ---- FOOTER: all text white ---- */
+  footer h1, footer h2, footer h3, footer h4, footer h5 { color: #FFFFFF !important; }
+  footer p, footer li, footer span, footer address { color: rgba(255,255,255,0.8) !important; }
+  footer a { color: rgba(255,255,255,0.75) !important; }
+  footer a:hover { color: #29C5F6 !important; }
+
+  /* ---- CTA SECTION: all text white ---- */
+  #cta h1, #cta h2, #cta h3, #cta p, #cta span, #cta li { color: #FFFFFF !important; }
+  .cta-btn-primary { background: #FFFFFF !important; color: #1533A0 !important; font-weight: 700 !important; }
+  .cta-btn-secondary { border-color: rgba(255,255,255,0.6) !important; color: #FFFFFF !important; }
+
+  /* ---- INTRO ANIMATION: all text white ---- */
+  #intro-overlay h1, #intro-overlay h2, #intro-overlay h3,
+  #intro-overlay p, #intro-overlay span, #intro-overlay div { color: #FFFFFF; }
+
+  /* ---- SECTION HEADINGS ON LIGHT BACKGROUNDS ---- */
+  #faculties .section-title, #about .section-title, #admissions .section-title { color: #1533A0 !important; }
+  #faculties .section-sub, #about .section-sub, #admissions .section-sub { color: #4A5A80 !important; }
+  #scholarships .section-title { color: #FFFFFF !important; }
+  #stats .section-title { color: #FFFFFF !important; }
+
+  /* ---- HERO FLOAT CARDS ---- */
+  .hero-float-card, .hero-float-card * { color: #FFFFFF !important; }
+
+  /* ---- SCHOL CARD AFTER (glowing circle) — fix on white bg ---- */
+  .schol-card::after {
+    background: radial-gradient(circle at top right, rgba(41,197,246,0.18), transparent 70%) !important;
+  }
 </style>
 </head>
 <body>
