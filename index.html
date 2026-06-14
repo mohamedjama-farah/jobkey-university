@@ -10,16 +10,16 @@
     --navy: #070B1A;
     --navy2: #0D1530;
     --navy3: #111B3A;
-    --gold: #F4A724;
-    --gold2: #FFD166;
-    --teal: #00D4FF;
-    --teal2: #0099BB;
+    --gold: #29C5F6;
+    --gold2: #7AD7F5;
+    --teal: #29C5F6;
+    --teal2: #1B3BAA;
     --white: #FFFFFF;
     --gray: #8892A4;
     --glass: rgba(255,255,255,0.06);
     --glass-border: rgba(255,255,255,0.12);
-    --glow-gold: 0 0 40px rgba(244,167,36,0.4);
-    --glow-teal: 0 0 40px rgba(0,212,255,0.4);
+    --glow-gold: 0 0 40px rgba(41,197,246,0.4);
+    --glow-teal: 0 0 40px rgba(27,59,170,0.6);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -82,7 +82,7 @@
     bottom: 18%;
     left: 0; right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(244,167,36,0.3), rgba(0,212,255,0.4), rgba(244,167,36,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(41,197,246,0.3), rgba(41,197,246,0.4), rgba(41,197,246,0.3), transparent);
     animation: floorAppear 0.8s 0.5s ease forwards;
     opacity: 0;
   }
@@ -279,7 +279,7 @@
     inset: 0;
     background: radial-gradient(ellipse at 50% 50%,
       rgba(255,230,100,0.95) 0%,
-      rgba(244,167,36,0.8) 30%,
+      rgba(41,197,246,0.8) 30%,
       rgba(255,200,50,0.5) 60%,
       transparent 100%
     );
@@ -345,7 +345,7 @@
   .key-svg {
     width: 90px;
     height: 36px;
-    filter: drop-shadow(0 0 8px rgba(244,167,36,0.7));
+    filter: drop-shadow(0 0 8px rgba(41,197,246,0.7));
   }
 
   /* Unlock particle burst */
@@ -375,7 +375,7 @@
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: #F4A724;
+    background: #29C5F6;
     animation: sparkFly 0.8s ease-out forwards;
   }
 
@@ -414,18 +414,18 @@
     text-transform: uppercase;
     line-height: 1.1;
     text-align: center;
-    background: linear-gradient(135deg, #FFD166 0%, #F4A724 40%, #00D4FF 100%);
+    background: linear-gradient(135deg, #7AD7F5 0%, #29C5F6 40%, #29C5F6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: none;
-    filter: drop-shadow(0 0 30px rgba(244,167,36,0.8));
+    filter: drop-shadow(0 0 30px rgba(41,197,246,0.8));
     animation: nameGlow 2s ease-in-out infinite alternate;
   }
 
   @keyframes nameGlow {
-    from { filter: drop-shadow(0 0 20px rgba(244,167,36,0.6)); }
-    to { filter: drop-shadow(0 0 50px rgba(0,212,255,0.8)); }
+    from { filter: drop-shadow(0 0 20px rgba(41,197,246,0.6)); }
+    to { filter: drop-shadow(0 0 50px rgba(41,197,246,0.8)); }
   }
 
   .intro-tagline {
@@ -492,7 +492,7 @@
   .job-badge {
     position: absolute;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(244,167,36,0.9), rgba(255,209,102,0.9));
+    background: linear-gradient(135deg, rgba(27,59,170,0.9), rgba(41,137,246,0.9));
     color: #050810;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.65rem;
@@ -502,7 +502,7 @@
     border-radius: 20px;
     text-transform: uppercase;
     animation: badgeFloat var(--badge-dur, 5s) var(--badge-delay, 0.5s) ease-in-out infinite;
-    box-shadow: 0 4px 15px rgba(244,167,36,0.5);
+    box-shadow: 0 4px 15px rgba(41,197,246,0.5);
   }
 
   @keyframes badgeFloat {
@@ -518,7 +518,7 @@
     transform: translateX(-50%);
     z-index: 30;
     padding: 16px 50px;
-    background: linear-gradient(135deg, #F4A724, #FFD166);
+    background: linear-gradient(135deg, #29C5F6, #7AD7F5);
     color: #050810;
     font-family: 'Orbitron', sans-serif;
     font-size: 1rem;
@@ -530,7 +530,7 @@
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
-    box-shadow: 0 8px 30px rgba(244,167,36,0.5), 0 0 0 0 rgba(244,167,36,0.4);
+    box-shadow: 0 8px 30px rgba(41,197,246,0.5), 0 0 0 0 rgba(41,197,246,0.4);
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
@@ -545,13 +545,13 @@
   }
 
   @keyframes btnPulse {
-    0%, 100% { box-shadow: 0 8px 30px rgba(244,167,36,0.5), 0 0 0 0 rgba(244,167,36,0.4); }
-    50% { box-shadow: 0 8px 30px rgba(244,167,36,0.6), 0 0 0 16px rgba(244,167,36,0); }
+    0%, 100% { box-shadow: 0 8px 30px rgba(41,197,246,0.5), 0 0 0 0 rgba(41,197,246,0.4); }
+    50% { box-shadow: 0 8px 30px rgba(41,197,246,0.6), 0 0 0 16px rgba(41,197,246,0); }
   }
 
   .intro-enter-btn:hover {
     transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 12px 40px rgba(244,167,36,0.7);
+    box-shadow: 0 12px 40px rgba(41,197,246,0.7);
   }
 
   /* Skip button */
@@ -591,7 +591,7 @@
     bottom: 0;
     left: 0;
     height: 3px;
-    background: linear-gradient(90deg, #F4A724, #00D4FF);
+    background: linear-gradient(90deg, #29C5F6, #29C5F6);
     border-radius: 0 2px 2px 0;
     width: 0%;
     z-index: 50;
@@ -737,24 +737,24 @@
   }
 
   .dropdown-menu a:hover {
-    background: rgba(244,167,36,0.12);
+    background: rgba(27,59,170,0.15);
     color: var(--gold);
   }
 
   .nav-cta {
-    background: linear-gradient(135deg, var(--gold), #E8920A) !important;
+    background: linear-gradient(135deg, var(--gold), #1B3BAA) !important;
     color: var(--navy) !important;
     font-weight: 700 !important;
     padding: 10px 22px !important;
     border-radius: 50px !important;
-    box-shadow: 0 4px 20px rgba(244,167,36,0.4);
+    box-shadow: 0 4px 20px rgba(41,197,246,0.4);
     transition: all 0.3s !important;
   }
 
   .nav-cta:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 30px rgba(244,167,36,0.6) !important;
-    background: linear-gradient(135deg, #FFD166, var(--gold)) !important;
+    box-shadow: 0 8px 30px rgba(41,197,246,0.6) !important;
+    background: linear-gradient(135deg, #7AD7F5, var(--gold)) !important;
   }
 
   /* ===== HERO ===== */
@@ -783,14 +783,14 @@
 
   .orb-1 {
     width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(244,167,36,0.15), transparent 70%);
+    background: radial-gradient(circle, rgba(41,197,246,0.15), transparent 70%);
     top: -100px; right: 10%;
     animation-delay: 0s;
   }
 
   .orb-2 {
     width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 70%);
+    background: radial-gradient(circle, rgba(41,197,246,0.12), transparent 70%);
     bottom: 0; left: 5%;
     animation-delay: 3s;
   }
@@ -818,8 +818,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(244,167,36,0.12);
-    border: 1px solid rgba(244,167,36,0.3);
+    background: rgba(27,59,170,0.15);
+    border: 1px solid rgba(41,197,246,0.3);
     border-radius: 50px;
     padding: 8px 18px;
     font-size: 0.78rem;
@@ -883,14 +883,14 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(135deg, var(--gold), #E8920A);
+    background: linear-gradient(135deg, var(--gold), #1B3BAA);
     color: var(--navy);
     font-weight: 700;
     font-size: 0.95rem;
     padding: 14px 32px;
     border-radius: 50px;
     text-decoration: none;
-    box-shadow: 0 8px 30px rgba(244,167,36,0.4);
+    box-shadow: 0 8px 30px rgba(41,197,246,0.4);
     transition: all 0.3s;
     border: none;
     cursor: pointer;
@@ -898,7 +898,7 @@
 
   .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(244,167,36,0.6);
+    box-shadow: 0 15px 40px rgba(41,197,246,0.6);
   }
 
   .btn-secondary {
@@ -921,8 +921,8 @@
   .btn-secondary:hover {
     background: rgba(255,255,255,0.12);
     transform: translateY(-3px);
-    border-color: rgba(0,212,255,0.4);
-    box-shadow: 0 8px 30px rgba(0,212,255,0.2);
+    border-color: rgba(41,197,246,0.4);
+    box-shadow: 0 8px 30px rgba(41,197,246,0.2);
   }
 
   .hero-3d-scene {
@@ -955,7 +955,7 @@
   .key-svg-container {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 30px rgba(244,167,36,0.6)) drop-shadow(0 0 60px rgba(244,167,36,0.3));
+    filter: drop-shadow(0 0 30px rgba(41,197,246,0.6)) drop-shadow(0 0 60px rgba(41,197,246,0.3));
   }
 
   /* Floating particles around key */
@@ -1068,7 +1068,7 @@
     position: relative;
     z-index: 2;
     padding: 60px 5%;
-    background: linear-gradient(90deg, rgba(244,167,36,0.05), rgba(0,212,255,0.05));
+    background: linear-gradient(90deg, rgba(41,197,246,0.05), rgba(41,197,246,0.05));
     border-top: 1px solid var(--glass-border);
     border-bottom: 1px solid var(--glass-border);
   }
@@ -1128,8 +1128,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0,212,255,0.1);
-    border: 1px solid rgba(0,212,255,0.25);
+    background: rgba(41,197,246,0.1);
+    border: 1px solid rgba(41,197,246,0.25);
     border-radius: 50px;
     padding: 6px 16px;
     font-size: 0.72rem;
@@ -1187,7 +1187,7 @@
     border-radius: 24px;
     padding: 40px;
     transform: rotateY(-5deg) rotateX(3deg);
-    box-shadow: 20px 20px 60px rgba(0,0,0,0.5), -5px -5px 20px rgba(244,167,36,0.05);
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.5), -5px -5px 20px rgba(41,197,246,0.05);
     transition: transform 0.5s;
     position: relative;
     overflow: hidden;
@@ -1213,8 +1213,8 @@
   }
 
   .value-chip {
-    background: rgba(244,167,36,0.08);
-    border: 1px solid rgba(244,167,36,0.2);
+    background: rgba(27,59,170,0.15);
+    border: 1px solid rgba(41,197,246,0.2);
     border-radius: 10px;
     padding: 12px 14px;
     font-size: 0.8rem;
@@ -1226,8 +1226,8 @@
   }
 
   .value-chip:hover {
-    background: rgba(244,167,36,0.15);
-    border-color: rgba(244,167,36,0.4);
+    background: rgba(41,197,246,0.15);
+    border-color: rgba(41,197,246,0.4);
     transform: translateY(-2px);
   }
 
@@ -1344,7 +1344,7 @@
     transform: translate(-50%, -50%);
     width: 200px; height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--faculty-color, rgba(244,167,36,0.1)), transparent 70%);
+    background: radial-gradient(circle, var(--faculty-color, rgba(41,197,246,0.1)), transparent 70%);
     pointer-events: none;
   }
 
@@ -1375,7 +1375,7 @@
 
   .fc-back {
     background: linear-gradient(135deg, var(--faculty-back, #1a2040), var(--navy3));
-    border: 1px solid var(--faculty-color, rgba(244,167,36,0.3));
+    border: 1px solid var(--faculty-color, rgba(41,197,246,0.3));
     transform: rotateY(180deg);
     padding: 28px;
     display: flex;
@@ -1536,8 +1536,8 @@
 
   .unlock-card.featured {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(244,167,36,0.12), rgba(0,212,255,0.08));
-    border-color: rgba(244,167,36,0.3);
+    background: linear-gradient(135deg, rgba(27,59,170,0.15), rgba(41,197,246,0.08));
+    border-color: rgba(41,197,246,0.3);
   }
 
   .uc-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
@@ -1589,14 +1589,14 @@
     position: absolute;
     top: 0; right: 0;
     width: 100px; height: 100px;
-    background: radial-gradient(circle, var(--schol-color, rgba(244,167,36,0.15)), transparent 70%);
+    background: radial-gradient(circle, var(--schol-color, rgba(41,197,246,0.15)), transparent 70%);
     pointer-events: none;
   }
 
   .schol-card:hover {
     transform: translateY(-8px);
-    border-color: var(--schol-color, rgba(244,167,36,0.4));
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px var(--schol-glow, rgba(244,167,36,0.1));
+    border-color: var(--schol-color, rgba(41,197,246,0.4));
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px var(--schol-glow, rgba(41,197,246,0.1));
   }
 
   .schol-badge {
@@ -1655,7 +1655,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(244,167,36,0.05), rgba(0,212,255,0.05));
+    background: linear-gradient(135deg, rgba(41,197,246,0.05), rgba(41,197,246,0.05));
   }
 
   .cta-inner {
@@ -1738,7 +1738,7 @@
   /* ===== CONTACT STRIP ===== */
   #contact-strip {
     padding: 30px 5%;
-    background: rgba(0,212,255,0.05);
+    background: rgba(41,197,246,0.05);
     border-top: 1px solid var(--glass-border);
     border-bottom: 1px solid var(--glass-border);
     z-index: 2;
@@ -1764,8 +1764,8 @@
   .ci-icon {
     width: 40px; height: 40px;
     border-radius: 10px;
-    background: rgba(244,167,36,0.12);
-    border: 1px solid rgba(244,167,36,0.25);
+    background: rgba(27,59,170,0.15);
+    border: 1px solid rgba(41,197,246,0.25);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1821,8 +1821,8 @@
   }
 
   .social-link:hover {
-    background: rgba(244,167,36,0.15);
-    border-color: rgba(244,167,36,0.4);
+    background: rgba(41,197,246,0.15);
+    border-color: rgba(41,197,246,0.4);
     color: var(--gold);
     transform: translateY(-3px);
   }
@@ -2154,8 +2154,8 @@
         <defs>
           <radialGradient id="lightGrad" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="#FFE566" stop-opacity="0.7"/>
-            <stop offset="40%" stop-color="#F4A724" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="#F4A724" stop-opacity="0"/>
+            <stop offset="40%" stop-color="#29C5F6" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#29C5F6" stop-opacity="0"/>
           </radialGradient>
         </defs>
         <ellipse cx="250" cy="250" rx="240" ry="240" fill="url(#lightGrad)"/>
@@ -2201,30 +2201,36 @@
       <!-- Key (positioned relative to door frame) -->
       <div class="key-wrapper" id="key-wrapper">
         <!-- SVG Key graphic -->
-        <svg class="key-svg" viewBox="0 0 120 44" xmlns="http://www.w3.org/2000/svg">
-          <!-- Key bow (ring/head) -->
-          <circle cx="22" cy="22" r="18" fill="none" stroke="#F4A724" stroke-width="5"/>
-          <circle cx="22" cy="22" r="10" fill="none" stroke="#F4A724" stroke-width="3"/>
-          <!-- J letter inside bow -->
-          <text x="16" y="27" font-family="Orbitron,sans-serif" font-size="13" font-weight="900" fill="#F4A724">J</text>
-          <!-- Key shaft -->
-          <rect x="38" y="19" width="72" height="6" rx="3" fill="#F4A724"/>
-          <!-- Key teeth -->
-          <rect x="58" y="25" width="6" height="10" rx="2" fill="#FFD166"/>
-          <rect x="72" y="25" width="6" height="14" rx="2" fill="#FFD166"/>
-          <rect x="86" y="25" width="6" height="8" rx="2" fill="#FFD166"/>
-          <rect x="100" y="25" width="6" height="12" rx="2" fill="#FFD166"/>
-          <!-- Teal accent -->
-          <circle cx="22" cy="22" r="5" fill="#00D4FF" opacity="0.7"/>
+        <svg class="key-svg" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg">
+          <!-- Key bow = Jobkey University Shield (logo colors) -->
+          <!-- Shield glow -->
+          <path d="M2,2 L42,2 L42,28 Q42,44 22,48 Q2,44 2,28 Z" fill="rgba(41,197,246,0.2)" />
+          <!-- Shield fill (royal blue) -->
+          <path d="M4,4 L40,4 L40,28 Q40,42 22,46 Q4,42 4,28 Z" fill="#1B3BAA"/>
+          <!-- Shield border (cyan) -->
+          <path d="M4,4 L40,4 L40,28 Q40,42 22,46 Q4,42 4,28 Z" stroke="#29C5F6" stroke-width="1.5" fill="none"/>
+          <!-- Star -->
+          <polygon points="22,8 23,11 26,11 23.5,13 24.5,16 22,14.2 19.5,16 20.5,13 18,11 21,11" fill="white"/>
+          <!-- Key/padlock inside shield (white) -->
+          <circle cx="22" cy="24" r="5.5" stroke="white" stroke-width="2" fill="none"/>
+          <line x1="22" y1="29.5" x2="22" y2="34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M16.5,33 Q16.5,39 22,39 Q27.5,39 27.5,33" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <!-- Key shaft (cyan) -->
+          <rect x="43" y="20" width="68" height="6" rx="3" fill="#29C5F6"/>
+          <!-- Key teeth (lighter cyan) -->
+          <rect x="58" y="26" width="6" height="9" rx="2" fill="#7AD7F5"/>
+          <rect x="71" y="26" width="6" height="13" rx="2" fill="#7AD7F5"/>
+          <rect x="84" y="26" width="6" height="7" rx="2" fill="#7AD7F5"/>
+          <rect x="97" y="26" width="6" height="11" rx="2" fill="#7AD7F5"/>
         </svg>
       </div>
 
       <!-- Unlock burst effect -->
       <div class="unlock-burst" id="unlock-burst">
         <svg width="60" height="60" viewBox="0 0 60 60">
-          <circle cx="30" cy="30" r="20" fill="none" stroke="#F4A724" stroke-width="2" opacity="0.8"/>
-          <circle cx="30" cy="30" r="10" fill="rgba(244,167,36,0.4)"/>
-          <text x="22" y="35" font-size="14" fill="#F4A724">✓</text>
+          <circle cx="30" cy="30" r="20" fill="none" stroke="#29C5F6" stroke-width="2" opacity="0.8"/>
+          <circle cx="30" cy="30" r="10" fill="rgba(41,197,246,0.4)"/>
+          <text x="22" y="35" font-size="14" fill="#29C5F6">✓</text>
         </svg>
       </div>
 
@@ -2263,8 +2269,8 @@
   <!-- Scroll-down indicator -->
   <div id="scroll-down-hint" style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:40;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transition:opacity 0.8s;pointer-events:none;">
     <span style="color:rgba(255,255,255,0.4);font-family:'Space Grotesk',sans-serif;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;">Explore</span>
-    <div style="width:1px;height:32px;background:linear-gradient(180deg,rgba(244,167,36,0.6),transparent);animation:scrollLineAnim 1.5s ease-in-out infinite;"></div>
-    <div style="width:8px;height:8px;border-right:2px solid rgba(244,167,36,0.6);border-bottom:2px solid rgba(244,167,36,0.6);transform:rotate(45deg);animation:scrollArrowAnim 1.5s ease-in-out infinite;"></div>
+    <div style="width:1px;height:32px;background:linear-gradient(180deg,rgba(41,197,246,0.6),transparent);animation:scrollLineAnim 1.5s ease-in-out infinite;"></div>
+    <div style="width:8px;height:8px;border-right:2px solid rgba(41,197,246,0.6);border-bottom:2px solid rgba(41,197,246,0.6);transform:rotate(45deg);animation:scrollArrowAnim 1.5s ease-in-out infinite;"></div>
   </div>
 
 </div><!-- /intro-overlay -->
@@ -2273,23 +2279,26 @@
 <!-- ===== NAVBAR ===== -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
+    <!-- Jobkey University Official Logo Recreation -->
     <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Key bow (circle) with J inside -->
-      <circle cx="18" cy="18" r="13" stroke="#F4A724" stroke-width="3" fill="none"/>
-      <circle cx="18" cy="18" r="7" stroke="#F4A724" stroke-width="2" fill="rgba(244,167,36,0.1)"/>
-      <!-- J letter -->
-      <text x="15" y="23" font-family="Orbitron,sans-serif" font-size="10" font-weight="900" fill="#F4A724">J</text>
-      <!-- Key shaft -->
-      <line x1="28" y1="18" x2="46" y2="18" stroke="#F4A724" stroke-width="3" stroke-linecap="round"/>
-      <!-- Key teeth -->
-      <line x1="40" y1="18" x2="40" y2="24" stroke="#F4A724" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="34" y1="18" x2="34" y2="22" stroke="#F4A724" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="44" y1="18" x2="44" y2="21" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
-      <!-- Glow effect -->
-      <circle cx="18" cy="18" r="13" stroke="rgba(244,167,36,0.2)" stroke-width="6" fill="none"/>
+      <!-- Shield background (logo royal blue) -->
+      <path d="M4,3 L44,3 L44,30 Q44,44 24,48 Q4,44 4,30 Z" fill="#1B3BAA"/>
+      <!-- Shield inner border highlight -->
+      <path d="M6.5,5.5 L41.5,5.5 L41.5,30 Q41.5,42 24,46 Q6.5,42 6.5,30 Z" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" fill="none"/>
+      <!-- Star at top center -->
+      <polygon points="24,8 25.2,11.6 29,11.6 26,13.8 27.1,17.4 24,15.2 20.9,17.4 22,13.8 19,11.6 22.8,11.6" fill="white"/>
+      <!-- Key/padlock icon in white -->
+      <!-- Circular ring (bow of key) -->
+      <circle cx="24" cy="25" r="7.5" stroke="white" stroke-width="2.5" fill="none"/>
+      <!-- Stem going down from ring -->
+      <line x1="24" y1="32.5" x2="24" y2="39" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <!-- Bottom U-arch (shackle / J-hook) -->
+      <path d="M17.5,37 Q17.5,45 24,45 Q30.5,45 30.5,37" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- Subtle glow around shield -->
+      <path d="M4,3 L44,3 L44,30 Q44,44 24,48 Q4,44 4,30 Z" stroke="rgba(41,197,246,0.4)" stroke-width="1" fill="none"/>
     </svg>
     <div class="nav-brand">
-      <div class="nav-brand-name">JOB<span>KEY</span></div>
+      <div class="nav-brand-name" style="color:#29C5F6;">JOB<span style="color:#29C5F6;">KEY</span></div>
       <div class="nav-brand-sub">University · Somalia</div>
     </div>
   </a>
@@ -2359,7 +2368,7 @@
   <a href="#faculty"     onclick="closeMobileMenu()" style="color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.95rem;">Faculties</a>
   <a href="#admissions"  onclick="closeMobileMenu()" style="color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.95rem;">Admissions</a>
   <a href="#scholarships"onclick="closeMobileMenu()" style="color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.95rem;">Scholarships</a>
-  <a href="http://jobkeyportal.com" target="_blank" style="margin-top:12px;display:block;text-align:center;background:linear-gradient(135deg,#F4A724,#FFD166);color:#050810;padding:12px 24px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;">Student Portal →</a>
+  <a href="http://jobkeyportal.com" target="_blank" style="margin-top:12px;display:block;text-align:center;background:linear-gradient(135deg,#29C5F6,#7AD7F5);color:#050810;padding:12px 24px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;">Student Portal →</a>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -2392,13 +2401,13 @@
       <svg class="key-svg-container" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="keyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#F4A724"/>
-            <stop offset="50%" stop-color="#FFD166"/>
-            <stop offset="100%" stop-color="#F4A724"/>
+            <stop offset="0%" stop-color="#29C5F6"/>
+            <stop offset="50%" stop-color="#7AD7F5"/>
+            <stop offset="100%" stop-color="#29C5F6"/>
           </linearGradient>
           <linearGradient id="shaftGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#F4A724"/>
-            <stop offset="100%" stop-color="#00D4FF"/>
+            <stop offset="0%" stop-color="#29C5F6"/>
+            <stop offset="100%" stop-color="#29C5F6"/>
           </linearGradient>
           <filter id="glow">
             <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
@@ -2409,7 +2418,7 @@
             <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
           <radialGradient id="bowGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="rgba(244,167,36,0.3)"/>
+            <stop offset="0%" stop-color="rgba(41,197,246,0.3)"/>
             <stop offset="100%" stop-color="transparent"/>
           </radialGradient>
         </defs>
@@ -2432,37 +2441,37 @@
         <line x1="182" y1="140" x2="290" y2="140" stroke="url(#shaftGrad)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
 
         <!-- Key teeth (bottom) -->
-        <rect x="250" y="140" width="10" height="26" rx="3" fill="#F4A724" filter="url(#glow)"/>
-        <rect x="228" y="140" width="10" height="20" rx="3" fill="#F4A724" filter="url(#glow)"/>
-        <rect x="270" y="140" width="8" height="16" rx="2.5" fill="#00D4FF" filter="url(#glow)"/>
+        <rect x="250" y="140" width="10" height="26" rx="3" fill="#29C5F6" filter="url(#glow)"/>
+        <rect x="228" y="140" width="10" height="20" rx="3" fill="#29C5F6" filter="url(#glow)"/>
+        <rect x="270" y="140" width="8" height="16" rx="2.5" fill="#29C5F6" filter="url(#glow)"/>
 
         <!-- Orbital ring decoration -->
-        <ellipse cx="110" cy="140" rx="100" ry="30" stroke="rgba(0,212,255,0.2)" stroke-width="1" fill="none" stroke-dasharray="8 6">
+        <ellipse cx="110" cy="140" rx="100" ry="30" stroke="rgba(41,197,246,0.2)" stroke-width="1" fill="none" stroke-dasharray="8 6">
           <animateTransform attributeName="transform" type="rotate" from="0 110 140" to="360 110 140" dur="12s" repeatCount="indefinite"/>
         </ellipse>
 
         <!-- Floating dots -->
-        <circle cx="60" cy="80" r="3" fill="#F4A724" opacity="0.6">
+        <circle cx="60" cy="80" r="3" fill="#29C5F6" opacity="0.6">
           <animate attributeName="cy" values="80;65;80" dur="4s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="170" cy="90" r="4" fill="#00D4FF" opacity="0.5">
+        <circle cx="170" cy="90" r="4" fill="#29C5F6" opacity="0.5">
           <animate attributeName="cy" values="90;70;90" dur="5s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="50" cy="190" r="2.5" fill="#FFD166" opacity="0.7">
+        <circle cx="50" cy="190" r="2.5" fill="#7AD7F5" opacity="0.7">
           <animate attributeName="cy" values="190;205;190" dur="3.5s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="280" cy="110" r="3" fill="#F4A724" opacity="0.5">
+        <circle cx="280" cy="110" r="3" fill="#29C5F6" opacity="0.5">
           <animate attributeName="cy" values="110;95;110" dur="4.5s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="240" cy="180" r="2" fill="#00D4FF" opacity="0.6">
+        <circle cx="240" cy="180" r="2" fill="#29C5F6" opacity="0.6">
           <animate attributeName="cy" values="180;165;180" dur="3s" repeatCount="indefinite"/>
         </circle>
 
         <!-- Sparkle stars -->
-        <text x="30" y="120" font-size="16" fill="#F4A724" opacity="0.7">✦</text>
-        <text x="175" y="200" font-size="12" fill="#00D4FF" opacity="0.5">✦</text>
-        <text x="260" y="75" font-size="10" fill="#FFD166" opacity="0.6">✦</text>
+        <text x="30" y="120" font-size="16" fill="#29C5F6" opacity="0.7">✦</text>
+        <text x="175" y="200" font-size="12" fill="#29C5F6" opacity="0.5">✦</text>
+        <text x="260" y="75" font-size="10" fill="#7AD7F5" opacity="0.6">✦</text>
       </svg>
     </div>
 
@@ -2578,10 +2587,10 @@
 
   <div class="faculties-grid">
     <!-- Card 1: Economics -->
-    <div class="faculty-card reveal delay-1" style="--faculty-color:#F4A724; --faculty-back:#1a1505;">
+    <div class="faculty-card reveal delay-1" style="--faculty-color:#29C5F6; --faculty-back:#1a1505;">
       <div class="fc-inner">
         <div class="fc-front">
-          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(244,167,36,0.12), transparent 70%);"></div>
+          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(27,59,170,0.15), transparent 70%);"></div>
           <div class="fc-icon">📊</div>
           <div class="fc-title">Economic & Management Science</div>
           <div class="fc-sub">Business · Finance · Public Admin</div>
@@ -2627,23 +2636,23 @@
     </div>
 
     <!-- Card 3: Computer Science -->
-    <div class="faculty-card reveal delay-3" style="--faculty-color:#00D4FF; --faculty-back:#05101a;">
+    <div class="faculty-card reveal delay-3" style="--faculty-color:#29C5F6; --faculty-back:#05101a;">
       <div class="fc-inner">
         <div class="fc-front">
-          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(0,212,255,0.12), transparent 70%);"></div>
+          <div class="fc-front-glow" style="background:radial-gradient(circle, rgba(41,197,246,0.12), transparent 70%);"></div>
           <div class="fc-icon">💻</div>
           <div class="fc-title">Computer Science & Engineering</div>
           <div class="fc-sub">Software · Networks · Engineering</div>
         </div>
-        <div class="fc-back" style="border-color:rgba(0,212,255,0.3);">
+        <div class="fc-back" style="border-color:rgba(41,197,246,0.3);">
           <div class="fc-back-title">💻 Programs Offered</div>
-          <ul class="fc-programs" style="--faculty-color:#00D4FF;">
+          <ul class="fc-programs" style="--faculty-color:#29C5F6;">
             <li>Bachelor of Computer Science</li>
             <li>Software Engineering</li>
             <li>Information Technology</li>
             <li>Computer Engineering</li>
           </ul>
-          <a href="#cta" class="fc-apply" style="background:#00D4FF; margin-top:16px; color:#000;">Apply Now →</a>
+          <a href="#cta" class="fc-apply" style="background:#29C5F6; margin-top:16px; color:#000;">Apply Now →</a>
         </div>
       </div>
     </div>
@@ -2725,16 +2734,16 @@
       <p class="section-subtitle">Three simple steps to join Jobkey University. We review every application personally.</p>
 
       <div class="unlock-steps">
-        <div class="unlock-step" style="--step-color:#F4A724;">
-          <div class="step-number" style="background:rgba(244,167,36,0.15); color:var(--gold); border:2px solid var(--gold);">01</div>
+        <div class="unlock-step" style="--step-color:#29C5F6;">
+          <div class="step-number" style="background:rgba(41,197,246,0.15); color:var(--gold); border:2px solid var(--gold);">01</div>
           <div class="step-content">
             <h4>Fill The Application Form</h4>
             <p>Complete the online application with your personal and academic details. No special formula — we review the whole person.</p>
           </div>
         </div>
 
-        <div class="unlock-step" style="--step-color:#00D4FF;">
-          <div class="step-number" style="background:rgba(0,212,255,0.15); color:var(--teal); border:2px solid var(--teal);">02</div>
+        <div class="unlock-step" style="--step-color:#29C5F6;">
+          <div class="step-number" style="background:rgba(41,197,246,0.15); color:var(--teal); border:2px solid var(--teal);">02</div>
           <div class="step-content">
             <h4>Submit Your Documents</h4>
             <p>Gather: Secondary Certificate, Transcripts, Passport Photo, Recommendation Letter. Submit via email or in person.</p>
@@ -2801,7 +2810,7 @@
     </div>
 
     <div class="schol-grid">
-      <div class="schol-card reveal delay-1" style="--schol-color:#F4A724; --schol-rgb:244,167,36; --schol-glow:rgba(244,167,36,0.15);">
+      <div class="schol-card reveal delay-1" style="--schol-color:#29C5F6; --schol-rgb:244,167,36; --schol-glow:rgba(41,197,246,0.15);">
         <div class="schol-badge">Institutional</div>
         <span class="schol-icon">🏛️</span>
         <div class="schol-title">Jobkey's Own Scholarships</div>
@@ -2817,12 +2826,12 @@
         <a href="mailto:scholarships@jobkey.edu.so" class="schol-link" style="color:#A78BFA;">Apply via Foundation →</a>
       </div>
 
-      <div class="schol-card reveal delay-3" style="--schol-color:#00D4FF; --schol-rgb:0,212,255; --schol-glow:rgba(0,212,255,0.15);">
-        <div class="schol-badge" style="color:#00D4FF; background:rgba(0,212,255,0.1); border-color:rgba(0,212,255,0.3);">State</div>
+      <div class="schol-card reveal delay-3" style="--schol-color:#29C5F6; --schol-rgb:0,212,255; --schol-glow:rgba(41,197,246,0.15);">
+        <div class="schol-badge" style="color:#29C5F6; background:rgba(41,197,246,0.1); border-color:rgba(41,197,246,0.3);">State</div>
         <span class="schol-icon">🇸🇴</span>
         <div class="schol-title">State Scholarships</div>
         <div class="schol-text">Financial assistance for Somali students where higher education access is hindered by financial constraints. Regulated by the Jobkey Board of Trustees.</div>
-        <a href="mailto:scholarships@jobkey.edu.so" class="schol-link" style="color:#00D4FF;">Apply via Board →</a>
+        <a href="mailto:scholarships@jobkey.edu.so" class="schol-link" style="color:#29C5F6;">Apply via Board →</a>
       </div>
     </div>
   </div>
@@ -2832,7 +2841,7 @@
 <section id="cta">
   <div class="cta-inner">
     <div class="reveal">
-      <div class="section-tag" style="justify-content:center; background:rgba(244,167,36,0.1); border-color:rgba(244,167,36,0.25); color:var(--gold);">🔑 The Key is in Your Hands</div>
+      <div class="section-tag" style="justify-content:center; background:rgba(41,197,246,0.1); border-color:rgba(41,197,246,0.25); color:var(--gold);">🔑 The Key is in Your Hands</div>
       <h2 style="margin-top:12px;">Ready to <span>Unlock</span> Your Future?</h2>
       <p>Join thousands of Somali students building a better tomorrow at Jobkey University. Applications are open — take the first step today.</p>
     </div>
@@ -2902,17 +2911,17 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="#" class="nav-logo" style="margin-bottom:8px;">
-        <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-          <circle cx="18" cy="18" r="13" stroke="#F4A724" stroke-width="3" fill="none"/>
-          <circle cx="18" cy="18" r="7" stroke="#F4A724" stroke-width="2" fill="rgba(244,167,36,0.1)"/>
-          <text x="15" y="23" font-family="Orbitron,sans-serif" font-size="10" font-weight="900" fill="#F4A724">J</text>
-          <line x1="28" y1="18" x2="46" y2="18" stroke="#F4A724" stroke-width="3" stroke-linecap="round"/>
-          <line x1="40" y1="18" x2="40" y2="24" stroke="#F4A724" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="34" y1="18" x2="34" y2="22" stroke="#F4A724" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="44" y1="18" x2="44" y2="21" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4,3 L44,3 L44,30 Q44,44 24,48 Q4,44 4,30 Z" fill="#1B3BAA"/>
+          <path d="M6.5,5.5 L41.5,5.5 L41.5,30 Q41.5,42 24,46 Q6.5,42 6.5,30 Z" stroke="rgba(255,255,255,0.2)" stroke-width="0.8" fill="none"/>
+          <polygon points="24,8 25.2,11.6 29,11.6 26,13.8 27.1,17.4 24,15.2 20.9,17.4 22,13.8 19,11.6 22.8,11.6" fill="white"/>
+          <circle cx="24" cy="25" r="7.5" stroke="white" stroke-width="2.5" fill="none"/>
+          <line x1="24" y1="32.5" x2="24" y2="39" stroke="white" stroke-width="3" stroke-linecap="round"/>
+          <path d="M17.5,37 Q17.5,45 24,45 Q30.5,45 30.5,37" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M4,3 L44,3 L44,30 Q44,44 24,48 Q4,44 4,30 Z" stroke="rgba(41,197,246,0.4)" stroke-width="1" fill="none"/>
         </svg>
         <div class="nav-brand">
-          <div class="nav-brand-name">JOB<span>KEY</span></div>
+          <div class="nav-brand-name" style="color:#29C5F6;">JOB<span style="color:#29C5F6;">KEY</span></div>
           <div class="nav-brand-sub">University · Somalia</div>
         </div>
       </a>
@@ -2998,7 +3007,7 @@ class Particle {
     this.speedX = (Math.random() - 0.5) * 0.4;
     this.speedY = (Math.random() - 0.5) * 0.4;
     this.opacity = Math.random() * 0.5 + 0.1;
-    this.color = Math.random() > 0.6 ? '#F4A724' : Math.random() > 0.5 ? '#00D4FF' : '#ffffff';
+    this.color = Math.random() > 0.6 ? '#29C5F6' : Math.random() > 0.5 ? '#29C5F6' : '#ffffff';
   }
   update() {
     this.x += this.speedX;
@@ -3028,7 +3037,7 @@ function drawConnections() {
       if (dist < 100) {
         ctx.save();
         ctx.globalAlpha = (1 - dist/100) * 0.06;
-        ctx.strokeStyle = '#F4A724';
+        ctx.strokeStyle = '#29C5F6';
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
@@ -3207,9 +3216,9 @@ if (card3d) {
     unlockBurst.classList.remove('active');
     unlockBurst.innerHTML = `
       <svg width="60" height="60" viewBox="0 0 60 60">
-        <circle cx="30" cy="30" r="20" fill="none" stroke="#F4A724" stroke-width="2" opacity="0.8"/>
-        <circle cx="30" cy="30" r="10" fill="rgba(244,167,36,0.4)"/>
-        <text x="22" y="35" font-size="14" fill="#F4A724">✓</text>
+        <circle cx="30" cy="30" r="20" fill="none" stroke="#29C5F6" stroke-width="2" opacity="0.8"/>
+        <circle cx="30" cy="30" r="10" fill="rgba(41,197,246,0.4)"/>
+        <text x="22" y="35" font-size="14" fill="#29C5F6">✓</text>
       </svg>`;
 
     // Re-enable transitions (after 1 frame)
@@ -3266,7 +3275,7 @@ if (card3d) {
         spark.style.cssText = `
           left: calc(50% - 2px);
           top: calc(50% - 2px);
-          background: ${Math.random() > 0.5 ? '#F4A724' : '#00D4FF'};
+          background: ${Math.random() > 0.5 ? '#29C5F6' : '#29C5F6'};
           --sparkDest: translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px);
           animation-delay: ${Math.random()*0.15}s;
           animation-duration: ${0.5 + Math.random()*0.3}s;
